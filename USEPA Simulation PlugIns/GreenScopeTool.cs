@@ -10,7 +10,7 @@ namespace USEPA_Simulation_PlugIns
     /// Summary for GreenScope Tool
     /// </summary>
     [Serializable()]
-    [System.Runtime.InteropServices.ComVisible(true)]
+    [System.Runtime.InteropServices.ComVisible(false)]
     [System.Runtime.InteropServices.Guid("42E26E78-D3CC-4949-8793-A90B08816E29")]
     [USEPA_Simulation_PlugIns.CapeName("GREENSCOPE Add-In")]
     [USEPA_Simulation_PlugIns.CapeAbout("GREENSCOPE Flowsheet Data Extraction Tool Add-in")]

@@ -889,6 +889,11 @@ namespace USEPA_Simulation_PlugIns
             m_ComponentDescription = objectToBeCopied.ComponentDescription;
         }
 
+        ~CapeIdentification()
+        {
+            Dispose(true);
+        }
+
         /// <summary>
         /// Creates a new object that is a copy of the current instance.
         /// </summary>
@@ -1200,10 +1205,10 @@ namespace USEPA_Simulation_PlugIns
 
         public override Object ConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, Object parameter, System.Type destinationType)
         {
-            if (typeof(System.String).IsAssignableFrom(destinationType) && typeof(ArrayParameterWrapper).IsAssignableFrom(parameter.GetType()))
-            {
-                return "";//((CapeOpen.ArrayParameterWrapper)parameter).;
-            }
+            ////if (typeof(System.String).IsAssignableFrom(destinationType) && typeof(ArrayParameterWrapper).IsAssignableFrom(parameter.GetType()))
+            ////{
+            ////    return "";//((CapeOpen.ArrayParameterWrapper)parameter).;
+            ////}
             if (typeof(System.String).IsAssignableFrom(destinationType) && typeof(CAPEOPEN.ICapeParameter).IsAssignableFrom(parameter.GetType()))
             {
                 return ((CAPEOPEN.ICapeParameter)parameter).value.ToString();

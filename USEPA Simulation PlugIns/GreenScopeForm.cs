@@ -263,6 +263,8 @@ namespace USEPA_Simulation_PlugIns
                     }
                     row["Enthalpy"] = enthalpy * totalFlow * 3600 / 1000000;
                     row["Entropy"] = entropy * totalFlow * 3600 / 1000000;
+                    if (System.Runtime.InteropServices.Marshal.IsComObject(p_TMO)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_TMO);
+
                 }
                 else if (p_Stream is CAPEOPEN.ICapeThermoMaterialObject)
                 {
@@ -291,6 +293,7 @@ namespace USEPA_Simulation_PlugIns
                     {
                         row[comps[i]] = fraction[i];
                     }
+                    if (System.Runtime.InteropServices.Marshal.IsComObject(p_TMO)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_TMO);
                 }
             }
         }
@@ -367,6 +370,7 @@ namespace USEPA_Simulation_PlugIns
                             if (!outletStreams.Columns.Contains(comps[i])) outletStreams.Columns.Add(comps[i]);
                         }
                     }
+                    if (System.Runtime.InteropServices.Marshal.IsComObject(p_Compounds)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_Compounds);
                 }
                 else if (p_Stream is CAPEOPEN.ICapeThermoMaterialObject)
                 {
@@ -405,6 +409,7 @@ namespace USEPA_Simulation_PlugIns
                             if (!outletStreams.Columns.Contains(comps[i])) outletStreams.Columns.Add(comps[i]);
                         }
                     }
+                    if (System.Runtime.InteropServices.Marshal.IsComObject(p_TMO)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_TMO);
                 }
                 else
                 {
@@ -414,6 +419,8 @@ namespace USEPA_Simulation_PlugIns
                         CAPEOPEN.ICapeParameter p_Param = (CAPEOPEN.ICapeParameter)p_Coll.Item("work");
                         double energyFlow = Convert.ToDouble(p_Param.value);
                         energy = energy - energyFlow * 3600 / 1000000;
+                        if (System.Runtime.InteropServices.Marshal.IsComObject(p_Coll)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_Coll);
+                        if (System.Runtime.InteropServices.Marshal.IsComObject(p_Param)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_Param);
                     }
                 }
             }

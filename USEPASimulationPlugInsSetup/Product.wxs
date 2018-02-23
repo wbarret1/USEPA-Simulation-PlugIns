@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="USEPASimulationPlugInsSetup" Language="1033" Version="1.0.0.0" Manufacturer="US Environmental Protection Agency" UpgradeCode="bb63d463-359b-4c0f-b1b5-709a9d2aafe7">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <Media Id='1' Cabinet='product.cab' EmbedCab='yes'/>
+
+    <Feature Id="ProductFeature" Title="USEPASimulationPlugInsSetup" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+    <Icon
+      Id="usepaIcons"
+      SourceFile="$(var.USEPA Simulation PlugIns.TargetPath)"
+      />
+    <Property Id="ARPPRODUCTICON" Value="usepaIcons" />
+  </Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="USEPASimulationPlugInsSetup" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+			<!-- <Component Id="ProductComponent"> -->
+				<!-- TODO: Insert files, registry keys, and other resources here. -->
+			<!-- </Component> -->
+      <Component Id="ProductComponent" Guid = "A6426CF5-A5B8-43A3-9448-44C5D589D1F6">
+        <!-- TODO: Insert files, registry keys, and other resources here. -->
+        <File Source="$(var.USEPA Simulation PlugIns.TargetPath)" />
+        <RemoveFolder Id="ProgramFilesFolder" On="uninstall"/>
+        <RegistryValue Root="HKCR" Key="USEPA\USEPASimulationPlugIns" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+      </Component>
+    </ComponentGroup>
+	</Fragment>
+</Wix>

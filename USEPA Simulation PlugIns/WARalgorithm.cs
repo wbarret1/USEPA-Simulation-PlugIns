@@ -52,7 +52,7 @@ namespace USEPA_Simulation_PlugIns
     /// energy usage in the WAR algorithm.
     /// </para>
     /// </remarks>
-    public partial class WARalgorithm : Form
+    public partial class WARalgorithm : Form, IDisposable
     {
 
         private System.Data.DataTable warData;
@@ -157,13 +157,67 @@ namespace USEPA_Simulation_PlugIns
             }
         }
 
+        ~WARalgorithm()
+        {
+            Dispose(false);
+        }
+
+        bool disposed = false;
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                foreach (object obj in p_Streams)
+                {
+                    if (System.Runtime.InteropServices.Marshal.IsComObject(obj))
+                    {
+                        System.Runtime.InteropServices.Marshal.FinalReleaseComObject(obj);
+                    }
+                }
+                foreach (object obj in p_InletStreams)
+                {
+                    if (System.Runtime.InteropServices.Marshal.IsComObject(obj))
+                    {
+                        System.Runtime.InteropServices.Marshal.FinalReleaseComObject(obj);
+                    }
+                }
+                foreach (object obj in p_OutletStreams)
+                {
+                    if (System.Runtime.InteropServices.Marshal.IsComObject(obj))
+                    {
+                        System.Runtime.InteropServices.Marshal.FinalReleaseComObject(obj);
+                    }
+                }
+                foreach (object obj in p_Units)
+                {
+                    if (System.Runtime.InteropServices.Marshal.IsComObject(obj))
+                    {
+                        System.Runtime.InteropServices.Marshal.FinalReleaseComObject(obj);
+                    }
+                }
+                //if (System.Runtime.InteropServices.Marshal.IsComObject(p_Monitoring))
+                //{
+                //    System.Runtime.InteropServices.Marshal.ReleaseComObject(p_Monitoring);
+                //}
+            }
+            disposed = true;
+            // Call base class implementation.
+            base.Dispose(disposing);
+        }
+
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.IO.Stream myStream;
-            System.Windows.Forms.SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            saveFileDialog1.FilterIndex = 1;
-            saveFileDialog1.RestoreDirectory = true;
+            System.Windows.Forms.SaveFileDialog saveFileDialog1 = new SaveFileDialog
+            {
+                Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = true
+            };
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 if ((myStream = saveFileDialog1.OpenFile()) != null)
@@ -290,6 +344,7 @@ namespace USEPA_Simulation_PlugIns
                             if (!streams.Columns.Contains(comps[i])) streams.Columns.Add(comps[i]);
                         }
                     }
+                    if (System.Runtime.InteropServices.Marshal.IsComObject(p_TMO)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_TMO);
                 }
                 else
                 {
@@ -299,8 +354,11 @@ namespace USEPA_Simulation_PlugIns
                         CAPEOPEN.ICapeParameter p_Param = (CAPEOPEN.ICapeParameter)p_Coll.Item("work");
                         double energyFlow = Convert.ToDouble(p_Param.value);
                         energy = energy - energyFlow * 3600 / 1000000;
+                        if (System.Runtime.InteropServices.Marshal.IsComObject(p_Coll)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_Coll);
+                        if (System.Runtime.InteropServices.Marshal.IsComObject(p_Param)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_Param);
                     }
                 }
+                if (System.Runtime.InteropServices.Marshal.IsComObject(p_Stream)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_Stream);
             }
             foreach (CAPEOPEN.ICapeIdentification p_Stream in p_OutletStreams)
             {
@@ -340,6 +398,7 @@ namespace USEPA_Simulation_PlugIns
                             if (!streams.Columns.Contains(comps[i])) streams.Columns.Add(comps[i]);
                         }
                     }
+                    if (System.Runtime.InteropServices.Marshal.IsComObject(p_TMO)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_TMO);
                 }
                 else
                 {
@@ -349,8 +408,11 @@ namespace USEPA_Simulation_PlugIns
                         CAPEOPEN.ICapeParameter p_Param = (CAPEOPEN.ICapeParameter)p_Coll.Item("work");
                         double energyFlow = Convert.ToDouble(p_Param.value);
                         energy = energy + energyFlow * 3600 / 1000000;
+                        if (System.Runtime.InteropServices.Marshal.IsComObject(p_Coll)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_Coll);
+                        if (System.Runtime.InteropServices.Marshal.IsComObject(p_Param)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_Param);
                     }
                 }
+                if (System.Runtime.InteropServices.Marshal.IsComObject(p_Stream)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_Stream);
             }
         }
 
@@ -420,8 +482,11 @@ namespace USEPA_Simulation_PlugIns
                             if (p_Port.portType == CAPEOPEN.CapePortType.CAPE_ENERGY)
                                 this.label5.Text = "NOTE: Not all energy Ports are connected.";
                         }
+                        if (System.Runtime.InteropServices.Marshal.IsComObject(p_Port)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_Port);
+
                     }
                 }
+                if (System.Runtime.InteropServices.Marshal.IsComObject(p_UnitPortColl)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_UnitPortColl);
                 this.AvailableUnitOpsheckedListBox.Items.Add(((CAPEOPEN.ICapeIdentification)(p_UnitColl.Item(i + 1))).ComponentName, true);
             }
             foreach (CAPEOPEN.ICapeIdentification p_Id in p_InletStreams)
@@ -632,6 +697,8 @@ namespace USEPA_Simulation_PlugIns
                         iDot = iDot + Convert.ToDouble(this.numericUpDown7.Value) * Convert.ToDouble(row["Photochemical Oxidation"]);
                         iDot = iDot + Convert.ToDouble(this.numericUpDown8.Value) * Convert.ToDouble(row["Acidification"]);
                         row["I Dot"] = iDot;
+                        if (System.Runtime.InteropServices.Marshal.IsComObject(p_TMO)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_TMO);
+
                     }
                 }
                 foreach (CAPEOPEN.ICapeIdentification p_Stream in p_OutletStreams)
@@ -699,6 +766,7 @@ namespace USEPA_Simulation_PlugIns
                         iDot = iDot + Convert.ToDouble(this.numericUpDown7.Value) * Convert.ToDouble(row["Photochemical Oxidation"]);
                         iDot = iDot + Convert.ToDouble(this.numericUpDown8.Value) * Convert.ToDouble(row["Acidification"]);
                         row["I Dot"] = iDot;
+                        if (System.Runtime.InteropServices.Marshal.IsComObject(p_TMO)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_TMO);
                     }
                 }
                 System.Data.DataRow row1 = streams.NewRow();

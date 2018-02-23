@@ -464,329 +464,329 @@ namespace USEPA_Simulation_PlugIns
         }
     };
 
-    /// <summary>
-    /// Integer-Valued parameter for use in the CAPE-OPEN parameter collection.
-    /// </summary>
-    /// <remarks>
-    /// Integer-Valued parameter for use in the CAPE-OPEN parameter collection.
-    /// </remarks>
-    [Serializable]
-    [System.Runtime.InteropServices.ComVisible(true)]
-    [System.Runtime.InteropServices.ComSourceInterfaces(typeof(ICapeIntegerParameterSpecEvents))]
-    [System.Runtime.InteropServices.Guid("EFC01B53-9A6A-4AD9-97BE-3F0294B3BBFB")]//ICapeThermoMaterialObject_IID)
-    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    class IntegerParameterWrapper : CapeParameter,
-        CAPEOPEN.ICapeParameter,
-        CAPEOPEN.ICapeParameterSpec,
-        CAPEOPEN.ICapeIntegerParameterSpec,
-        ICloneable,
-        System.ComponentModel.INotifyPropertyChanged
-    {
-        CAPEOPEN.ICapeParameter m_parameter;
+    ///// <summary>
+    ///// Integer-Valued parameter for use in the CAPE-OPEN parameter collection.
+    ///// </summary>
+    ///// <remarks>
+    ///// Integer-Valued parameter for use in the CAPE-OPEN parameter collection.
+    ///// </remarks>
+    //[Serializable]
+    //[System.Runtime.InteropServices.ComVisible(true)]
+    //[System.Runtime.InteropServices.ComSourceInterfaces(typeof(ICapeIntegerParameterSpecEvents))]
+    //[System.Runtime.InteropServices.Guid("EFC01B53-9A6A-4AD9-97BE-3F0294B3BBFB")]//ICapeThermoMaterialObject_IID)
+    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    //class IntegerParameterWrapper : CapeParameter,
+    //    CAPEOPEN.ICapeParameter,
+    //    CAPEOPEN.ICapeParameterSpec,
+    //    CAPEOPEN.ICapeIntegerParameterSpec,
+    //    ICloneable,
+    //    System.ComponentModel.INotifyPropertyChanged
+    //{
+    //    CAPEOPEN.ICapeParameter m_parameter;
 
-        /// <summary>
-        /// Gets and sets the value for this Parameter.
-        /// </summary>
-        /// <remarks>
-        /// This value uses the System.Object data type for compatibility with 
-        /// COM-based CAPE-OPEN.
-        /// </remarks>
-        /// <value>The value of the parameter.</value>
-        /// <exception cref ="ECapeUnknown">The error to be raised when other error(s),  specified for this operation, are not suitable.</exception>
-        /// <exception cref = "ECapeInvalidArgument">To be used when an invalid argument value is passed, for example, an unrecognized Compound identifier or UNDEFINED for the props argument.</exception>
-        [System.ComponentModel.BrowsableAttribute(false)]
-        override public Object value
-        {
-            get
-            {
-                return m_parameter.value;
-            }
-            set
-            {
-                ParameterValueChangedEventArgs args = new ParameterValueChangedEventArgs(this.ComponentName, m_parameter.value, value);
-                m_parameter.value = (int)value;
-                OnParameterValueChanged(args);
-                NotifyPropertyChanged("Value");
-            }
-        }
+    //    /// <summary>
+    //    /// Gets and sets the value for this Parameter.
+    //    /// </summary>
+    //    /// <remarks>
+    //    /// This value uses the System.Object data type for compatibility with 
+    //    /// COM-based CAPE-OPEN.
+    //    /// </remarks>
+    //    /// <value>The value of the parameter.</value>
+    //    /// <exception cref ="ECapeUnknown">The error to be raised when other error(s),  specified for this operation, are not suitable.</exception>
+    //    /// <exception cref = "ECapeInvalidArgument">To be used when an invalid argument value is passed, for example, an unrecognized Compound identifier or UNDEFINED for the props argument.</exception>
+    //    [System.ComponentModel.BrowsableAttribute(false)]
+    //    override public Object value
+    //    {
+    //        get
+    //        {
+    //            return m_parameter.value;
+    //        }
+    //        set
+    //        {
+    //            ParameterValueChangedEventArgs args = new ParameterValueChangedEventArgs(this.ComponentName, m_parameter.value, value);
+    //            m_parameter.value = (int)value;
+    //            OnParameterValueChanged(args);
+    //            NotifyPropertyChanged("Value");
+    //        }
+    //    }
 
-        /// <summary>
-        /// Creates a new instance of the integer-valued parameter class.
-        /// </summary>
-        /// <remarks>
-        /// <para>The default value is set to the inital value of the parameter. The upper
-        /// bound is set to Int32.MaxValue (2,147,483,647) and the lower bound is set to 
-        /// Int32.MinValue (-2,147,483,648). The mode is set to CapeParamMode.CAPE_INPUT_OUTPUT.</para>
-        /// </remarks>
-        /// <param name = "parameter">Sets the inital value of the parameter.</param>
-        public IntegerParameterWrapper(CAPEOPEN.ICapeParameter parameter)
-            : base(String.Empty, string.Empty, parameter.Mode)
-        {
-            m_parameter = parameter;
-            this.ComponentName = ((CAPEOPEN.ICapeIdentification)parameter).ComponentName;
-            this.ComponentDescription = ((CAPEOPEN.ICapeIdentification)parameter).ComponentDescription;
-            this.Mode = parameter.Mode;
-            m_ValStatus = parameter.ValStatus;
-        }
-
-
-        /// <summary>Creates a new object that is a copy of the current instance.</summary>
-        /// <remarks>
-        /// <para>
-        /// Clone can be implemented either as a deep copy or a shallow copy. In a deep copy, all objects are duplicated; 
-        /// in a shallow copy, only the top-level objects are duplicated and the lower levels contain references.
-        /// </para>
-        /// <para>
-        /// The resulting clone must be of the same type as, or compatible with, the original instance.
-        /// </para>
-        /// <para>
-        /// See <see cref="Object.MemberwiseClone"/> for more information on cloning, deep versus shallow copies, and examples.
-        /// </para>
-        /// </remarks>
-        /// <returns>A new object that is a copy of this instance.</returns>
-        override public object Clone()
-        {
-            return new IntegerParameter(this.ComponentName, this.ComponentDescription, this.Value, this.DefaultValue, this.LowerBound, this.UpperBound, this.Mode);
-        }
-
-        /// <summary>
-        /// Occurs when the user changes of the lower bound of the parameter changes.
-        /// </summary>
-        /// <remarks><para>Raising an event invokes the event handler through a delegate.</para>
-        /// </remarks>
-        public event ParameterLowerBoundChangedHandler ParameterLowerBoundChanged;
-        /// <summary>
-        /// Occurs when the user changes of the lower bound of a parameter.
-        /// </summary>
-        /// <remarks><para>Raising an event invokes the event handler through a delegate.</para>
-        /// <para>The <c>OnParameterLowerBoundChanged</c> method also allows derived classes to handle the event without attaching a delegate. This is the preferred 
-        /// technique for handling the event in a derived class.</para>
-        /// <para>Notes to Inheritors: </para>
-        /// <para>When overriding <c>OnParameterLowerBoundChanged</c> in a derived class, be sure to call the base class's <c>OnComponentNameChanged</c> method so that registered 
-        /// delegates receive the event.</para>
-        /// </remarks>
-        /// <param name = "args">A <see cref = "ParameterValueChangedEventArgs">ParameterValueChangedEventArgs</see> that contains information about the event.</param>
-        protected void OnParameterLowerBoundChanged(ParameterLowerBoundChangedEventArgs args)
-        {
-            if (ParameterLowerBoundChanged != null)
-            {
-                ParameterLowerBoundChanged(this, args);
-            }
-        }
-
-        /// <summary>
-        /// Occurs when the user changes of the upper bound of the parameter changes.
-        /// </summary>
-        /// <remarks><para>Raising an event invokes the event handler through a delegate.</para>
-        /// </remarks>
-        public event ParameterUpperBoundChangedHandler ParameterUpperBoundChanged;
-        /// <summary>
-        /// Occurs when the user changes of the upper bound of a parameter.
-        /// </summary>
-        /// <remarks><para>Raising an event invokes the event handler through a delegate.</para>
-        /// <para>The <c>OnParameterUpperBoundChanged</c> method also allows derived classes to handle the event without attaching a delegate. This is the preferred 
-        /// technique for handling the event in a derived class.</para>
-        /// <para>Notes to Inheritors: </para>
-        /// <para>When overriding <c>OnParameterUpperBoundChanged</c> in a derived class, be sure to call the base class's <c>OnParameterUpperBoundChanged</c> method so that registered 
-        /// delegates receive the event.</para>
-        /// </remarks>
-        /// <param name = "args">A <see cref = "ParameterLowerBoundChangedEventArgs">ParameterUpperBoundChangedEventArgs</see> that contains information about the event.</param>
-        protected void OnParameterUpperBoundChanged(ParameterUpperBoundChangedEventArgs args)
-        {
-            if (ParameterUpperBoundChanged != null)
-            {
-                ParameterUpperBoundChanged(this, args);
-            }
-        }
-        // ICloneable
-        /// <summary>
-        /// Creates a copy of the parameter.
-        /// </summary>
-        /// <remarks><para>The clone method is used to create a deep copy of the parameter.</para>
-        /// </remarks>
-        /// <returns>A copy of the current parameter.</returns>
-        Object ICloneable.Clone()
-        {
-            return new IntegerParameterWrapper(m_parameter);
-        }
+    //    /// <summary>
+    //    /// Creates a new instance of the integer-valued parameter class.
+    //    /// </summary>
+    //    /// <remarks>
+    //    /// <para>The default value is set to the inital value of the parameter. The upper
+    //    /// bound is set to Int32.MaxValue (2,147,483,647) and the lower bound is set to 
+    //    /// Int32.MinValue (-2,147,483,648). The mode is set to CapeParamMode.CAPE_INPUT_OUTPUT.</para>
+    //    /// </remarks>
+    //    /// <param name = "parameter">Sets the inital value of the parameter.</param>
+    //    public IntegerParameterWrapper(CAPEOPEN.ICapeParameter parameter)
+    //        : base(String.Empty, string.Empty, parameter.Mode)
+    //    {
+    //        m_parameter = parameter;
+    //        this.ComponentName = ((CAPEOPEN.ICapeIdentification)parameter).ComponentName;
+    //        this.ComponentDescription = ((CAPEOPEN.ICapeIdentification)parameter).ComponentDescription;
+    //        this.Mode = parameter.Mode;
+    //        m_ValStatus = parameter.ValStatus;
+    //    }
 
 
-        /// <summary>
-        /// Gets and sets the value for this Parameter. 
-        /// </summary>
-        /// <remarks>
-        /// The value of the parameter.
-        /// </remarks>
-        /// <value>
-        /// The value of the parameter.
-        /// </value>
-        /// <exception cref ="ECapeUnknown">The error to be raised when other error(s),  specified for this operation, are not suitable.</exception>
-        /// <exception cref = "ECapeInvalidArgument">To be used when an invalid argument value is passed, for example, an unrecognized Compound identifier or UNDEFINED for the props argument.</exception>
-        [System.ComponentModel.CategoryAttribute("ICapeParameter")]
-        public int Value
-        {
-            get
-            {
-                return (int)m_parameter.value;
-            }
-            set
-            {
-                ParameterValueChangedEventArgs args = new ParameterValueChangedEventArgs(this.ComponentName, m_parameter.value, value);
-                m_parameter.value = value;
-                OnParameterValueChanged(args);
-                NotifyPropertyChanged("Value");
-            }
-        }
+    //    /// <summary>Creates a new object that is a copy of the current instance.</summary>
+    //    /// <remarks>
+    //    /// <para>
+    //    /// Clone can be implemented either as a deep copy or a shallow copy. In a deep copy, all objects are duplicated; 
+    //    /// in a shallow copy, only the top-level objects are duplicated and the lower levels contain references.
+    //    /// </para>
+    //    /// <para>
+    //    /// The resulting clone must be of the same type as, or compatible with, the original instance.
+    //    /// </para>
+    //    /// <para>
+    //    /// See <see cref="Object.MemberwiseClone"/> for more information on cloning, deep versus shallow copies, and examples.
+    //    /// </para>
+    //    /// </remarks>
+    //    /// <returns>A new object that is a copy of this instance.</returns>
+    //    override public object Clone()
+    //    {
+    //        return new IntegerParameter(this.ComponentName, this.ComponentDescription, this.Value, this.DefaultValue, this.LowerBound, this.UpperBound, this.Mode);
+    //    }
 
-        /// <summary>
-        /// Validates the current value of the parameter against the 
-        /// specification of the parameter.
-        /// </summary>
-        /// <remarks>
-        /// The parameter is considered valid if the current value is between the 
-        /// upper and lower bound. The message is used to return the reason that 
-        /// the parameter is invalid.
-        /// </remarks>
-        /// <returns>
-        /// True if the parameter is valid, false if not valid.
-        /// </returns>
-        /// <param name = "message">reference to a string that will conain a message regarding the validation of the parameter.</param>
-        /// <exception cref ="ECapeUnknown">The error to be raised when other error(s),  specified for this operation, are not suitable.</exception>
-        /// <exception cref = "ECapeInvalidArgument">To be used when an invalid argument value is passed, for example, an unrecognized Compound identifier or UNDEFINED for the props argument.</exception>
-        public override bool Validate(ref String message)
-        {
-            ParameterValidatedEventArgs args;
-            CAPEOPEN.CapeValidationStatus valStatus = m_parameter.ValStatus;
-            bool retval = m_parameter.Validate(message);
-            args = new ParameterValidatedEventArgs(this.ComponentName, message, ValStatus, m_parameter.ValStatus);
-            OnParameterValidated(args);
-            this.NotifyPropertyChanged("ValStatus");
-            return retval;
-        }
+    //    /// <summary>
+    //    /// Occurs when the user changes of the lower bound of the parameter changes.
+    //    /// </summary>
+    //    /// <remarks><para>Raising an event invokes the event handler through a delegate.</para>
+    //    /// </remarks>
+    //    public event ParameterLowerBoundChangedHandler ParameterLowerBoundChanged;
+    //    /// <summary>
+    //    /// Occurs when the user changes of the lower bound of a parameter.
+    //    /// </summary>
+    //    /// <remarks><para>Raising an event invokes the event handler through a delegate.</para>
+    //    /// <para>The <c>OnParameterLowerBoundChanged</c> method also allows derived classes to handle the event without attaching a delegate. This is the preferred 
+    //    /// technique for handling the event in a derived class.</para>
+    //    /// <para>Notes to Inheritors: </para>
+    //    /// <para>When overriding <c>OnParameterLowerBoundChanged</c> in a derived class, be sure to call the base class's <c>OnComponentNameChanged</c> method so that registered 
+    //    /// delegates receive the event.</para>
+    //    /// </remarks>
+    //    /// <param name = "args">A <see cref = "ParameterValueChangedEventArgs">ParameterValueChangedEventArgs</see> that contains information about the event.</param>
+    //    protected void OnParameterLowerBoundChanged(ParameterLowerBoundChangedEventArgs args)
+    //    {
+    //        if (ParameterLowerBoundChanged != null)
+    //        {
+    //            ParameterLowerBoundChanged(this, args);
+    //        }
+    //    }
 
-        /// <summary>
-        /// Sets the value of the parameter to its default value.
-        /// </summary>
-        /// <remarks>
-        ///  This method sets the parameter's value to the default value.
-        /// </remarks>
-        /// <exception cref ="ECapeUnknown">The error to be raised when other error(s),  specified for this operation, are not suitable.</exception>
-        public override void Reset()
-        {
-            ParameterResetEventArgs args = new ParameterResetEventArgs(this.ComponentName);
-            m_parameter.Reset();
-            OnParameterReset(args);
-            NotifyPropertyChanged("Value");
-        }
+    //    /// <summary>
+    //    /// Occurs when the user changes of the upper bound of the parameter changes.
+    //    /// </summary>
+    //    /// <remarks><para>Raising an event invokes the event handler through a delegate.</para>
+    //    /// </remarks>
+    //    public event ParameterUpperBoundChangedHandler ParameterUpperBoundChanged;
+    //    /// <summary>
+    //    /// Occurs when the user changes of the upper bound of a parameter.
+    //    /// </summary>
+    //    /// <remarks><para>Raising an event invokes the event handler through a delegate.</para>
+    //    /// <para>The <c>OnParameterUpperBoundChanged</c> method also allows derived classes to handle the event without attaching a delegate. This is the preferred 
+    //    /// technique for handling the event in a derived class.</para>
+    //    /// <para>Notes to Inheritors: </para>
+    //    /// <para>When overriding <c>OnParameterUpperBoundChanged</c> in a derived class, be sure to call the base class's <c>OnParameterUpperBoundChanged</c> method so that registered 
+    //    /// delegates receive the event.</para>
+    //    /// </remarks>
+    //    /// <param name = "args">A <see cref = "ParameterLowerBoundChangedEventArgs">ParameterUpperBoundChangedEventArgs</see> that contains information about the event.</param>
+    //    protected void OnParameterUpperBoundChanged(ParameterUpperBoundChangedEventArgs args)
+    //    {
+    //        if (ParameterUpperBoundChanged != null)
+    //        {
+    //            ParameterUpperBoundChanged(this, args);
+    //        }
+    //    }
+    //    // ICloneable
+    //    /// <summary>
+    //    /// Creates a copy of the parameter.
+    //    /// </summary>
+    //    /// <remarks><para>The clone method is used to create a deep copy of the parameter.</para>
+    //    /// </remarks>
+    //    /// <returns>A copy of the current parameter.</returns>
+    //    Object ICloneable.Clone()
+    //    {
+    //        return new IntegerParameterWrapper(m_parameter);
+    //    }
 
-        // ICapeParameterSpec
-        // ICapeParameterSpec
-        /// <summary>
-        /// Gets the type of the parameter. 
-        /// </summary>
-        /// <remarks>
-        /// Gets the <see cref = "CapeParamType"/> of the parameter for which this is a specification: real 
-        /// (CAPE_REAL), integer(CAPE_INT), option(CAPE_OPTION), boolean(CAPE_BOOLEAN) 
-        /// or array(CAPE_ARRAY).
-        /// </remarks>
-        /// <value>The parameter type. </value>
-        /// <exception cref ="ECapeUnknown">The error to be raised when other error(s),  specified for this operation, are not suitable.</exception>
-        /// <exception cref = "ECapeInvalidArgument">To be used when an invalid argument value is passed.</exception>
-        [System.ComponentModel.CategoryAttribute("ICapeParameterSpec")]
-        public override CAPEOPEN.CapeParamType Type
-        {
-            get
-            {
-                return CAPEOPEN.CapeParamType.CAPE_INT;
-            }
-        }
 
-        //ICapeIntegerParameterSpec
+    //    /// <summary>
+    //    /// Gets and sets the value for this Parameter. 
+    //    /// </summary>
+    //    /// <remarks>
+    //    /// The value of the parameter.
+    //    /// </remarks>
+    //    /// <value>
+    //    /// The value of the parameter.
+    //    /// </value>
+    //    /// <exception cref ="ECapeUnknown">The error to be raised when other error(s),  specified for this operation, are not suitable.</exception>
+    //    /// <exception cref = "ECapeInvalidArgument">To be used when an invalid argument value is passed, for example, an unrecognized Compound identifier or UNDEFINED for the props argument.</exception>
+    //    [System.ComponentModel.CategoryAttribute("ICapeParameter")]
+    //    public int Value
+    //    {
+    //        get
+    //        {
+    //            return (int)m_parameter.value;
+    //        }
+    //        set
+    //        {
+    //            ParameterValueChangedEventArgs args = new ParameterValueChangedEventArgs(this.ComponentName, m_parameter.value, value);
+    //            m_parameter.value = value;
+    //            OnParameterValueChanged(args);
+    //            NotifyPropertyChanged("Value");
+    //        }
+    //    }
 
-        /// <summary>
-        /// Gets and sets the default value of the parameter.
-        /// </summary>
-        /// <remarks>
-        /// Gets and sets the default value of the parameter.
-        /// </remarks>
-        /// <value>The default value for the parameter. </value>
-        /// <exception cref ="ECapeUnknown">The error to be raised when other error(s),  specified for this operation, are not suitable.</exception>
-        /// <exception cref = "ECapeInvalidArgument">To be used when an invalid argument value is passed, for example, an unrecognized Compound identifier or UNDEFINED for the props argument.</exception>
-        [System.ComponentModel.CategoryAttribute("ICapeIntegerParameterSpec")]
-        public int DefaultValue
-        {
-            get
-            {
-                return ((CAPEOPEN.ICapeIntegerParameterSpec)m_parameter.Specification).DefaultValue;
-            }
-            set
-            {
-            }
-        }
+    //    /// <summary>
+    //    /// Validates the current value of the parameter against the 
+    //    /// specification of the parameter.
+    //    /// </summary>
+    //    /// <remarks>
+    //    /// The parameter is considered valid if the current value is between the 
+    //    /// upper and lower bound. The message is used to return the reason that 
+    //    /// the parameter is invalid.
+    //    /// </remarks>
+    //    /// <returns>
+    //    /// True if the parameter is valid, false if not valid.
+    //    /// </returns>
+    //    /// <param name = "message">reference to a string that will conain a message regarding the validation of the parameter.</param>
+    //    /// <exception cref ="ECapeUnknown">The error to be raised when other error(s),  specified for this operation, are not suitable.</exception>
+    //    /// <exception cref = "ECapeInvalidArgument">To be used when an invalid argument value is passed, for example, an unrecognized Compound identifier or UNDEFINED for the props argument.</exception>
+    //    public override bool Validate(ref String message)
+    //    {
+    //        ParameterValidatedEventArgs args;
+    //        CAPEOPEN.CapeValidationStatus valStatus = m_parameter.ValStatus;
+    //        bool retval = m_parameter.Validate(message);
+    //        args = new ParameterValidatedEventArgs(this.ComponentName, message, ValStatus, m_parameter.ValStatus);
+    //        OnParameterValidated(args);
+    //        this.NotifyPropertyChanged("ValStatus");
+    //        return retval;
+    //    }
 
-        /// <summary>
-        /// Gets and sets the lower bound of the parameter.
-        /// </summary>
-        /// <remarks>
-        /// The lower bound can be an valid integer. By default, it is set to 
-        /// Int32.MinValue, 2,147,483,648; that is, hexadecimal 0x80000000
-        /// </remarks>
-        /// <value>The lower bound for the parameter. </value>
-        /// <exception cref ="ECapeUnknown">The error to be raised when other error(s),  specified for this operation, are not suitable.</exception>
-        /// <exception cref = "ECapeInvalidArgument">To be used when an invalid argument value is passed, for example, an unrecognized Compound identifier or UNDEFINED for the props argument.</exception>
-        [System.ComponentModel.CategoryAttribute("ICapeIntegerParameterSpec")]
-        public int LowerBound
-        {
-            get
-            {
-                return ((CAPEOPEN.ICapeIntegerParameterSpec)m_parameter.Specification).LowerBound;
-            }
-            set
-            {
-            }
-        }
+    //    /// <summary>
+    //    /// Sets the value of the parameter to its default value.
+    //    /// </summary>
+    //    /// <remarks>
+    //    ///  This method sets the parameter's value to the default value.
+    //    /// </remarks>
+    //    /// <exception cref ="ECapeUnknown">The error to be raised when other error(s),  specified for this operation, are not suitable.</exception>
+    //    public override void Reset()
+    //    {
+    //        ParameterResetEventArgs args = new ParameterResetEventArgs(this.ComponentName);
+    //        m_parameter.Reset();
+    //        OnParameterReset(args);
+    //        NotifyPropertyChanged("Value");
+    //    }
 
-        /// <summary>
-        /// Gets and sets the upper bound of the parameter.
-        /// </summary>
-        /// <remarks>
-        /// The lower bound can be an valid integer. By default, it is set to 
-        /// Int32.MaxValue, 2,147,483,647; that is, hexadecimal 0x7FFFFFFF.
-        /// </remarks>
-        /// <value>The upper bound for the parameter. </value>
-        /// <exception cref ="ECapeUnknown">The error to be raised when other error(s),  specified for this operation, are not suitable.</exception>
-        /// <exception cref = "ECapeInvalidArgument">To be used when an invalid argument value is passed, for example, an unrecognized Compound identifier or UNDEFINED for the props argument.</exception>
-        [System.ComponentModel.CategoryAttribute("ICapeIntegerParameterSpec")]
-        public int UpperBound
-        {
-            get
-            {
-                return ((CAPEOPEN.ICapeIntegerParameterSpec)m_parameter.Specification).UpperBound;
-            }
-            set
-            {
-            }
-        }
+    //    // ICapeParameterSpec
+    //    // ICapeParameterSpec
+    //    /// <summary>
+    //    /// Gets the type of the parameter. 
+    //    /// </summary>
+    //    /// <remarks>
+    //    /// Gets the <see cref = "CapeParamType"/> of the parameter for which this is a specification: real 
+    //    /// (CAPE_REAL), integer(CAPE_INT), option(CAPE_OPTION), boolean(CAPE_BOOLEAN) 
+    //    /// or array(CAPE_ARRAY).
+    //    /// </remarks>
+    //    /// <value>The parameter type. </value>
+    //    /// <exception cref ="ECapeUnknown">The error to be raised when other error(s),  specified for this operation, are not suitable.</exception>
+    //    /// <exception cref = "ECapeInvalidArgument">To be used when an invalid argument value is passed.</exception>
+    //    [System.ComponentModel.CategoryAttribute("ICapeParameterSpec")]
+    //    public override CAPEOPEN.CapeParamType Type
+    //    {
+    //        get
+    //        {
+    //            return CAPEOPEN.CapeParamType.CAPE_INT;
+    //        }
+    //    }
 
-        /// <summary>
-        /// Validates the value sent against the specification of the parameter. 
-        /// </summary>
-        /// <remarks>
-        /// The parameter is considered valid if the current value is between 
-        /// the upper and lower bound. The message is used to return the reason 
-        /// that the parameter is invalid.
-        /// </remarks>
-        /// <returns>
-        /// True if the parameter is valid, false if not valid.
-        /// </returns>
-        /// <param name = "value">Integer value that will be validated against the parameter's current specification.</param>
-        /// <param name = "message">reference to a string that will conain a message regarding the validation of the parameter.</param>
-        /// <exception cref ="ECapeUnknown">The error to be raised when other error(s),  specified for this operation, are not suitable.</exception>
-        /// <exception cref = "ECapeInvalidArgument">To be used when an invalid argument value is passed, for example, an unrecognized Compound identifier or UNDEFINED for the props argument.</exception>
-        public bool Validate(int value, ref String message)
-        {
-            return ((CAPEOPEN.ICapeIntegerParameterSpec)m_parameter.Specification).Validate(value, message);
-        }
-    };
+    //    //ICapeIntegerParameterSpec
+
+    //    /// <summary>
+    //    /// Gets and sets the default value of the parameter.
+    //    /// </summary>
+    //    /// <remarks>
+    //    /// Gets and sets the default value of the parameter.
+    //    /// </remarks>
+    //    /// <value>The default value for the parameter. </value>
+    //    /// <exception cref ="ECapeUnknown">The error to be raised when other error(s),  specified for this operation, are not suitable.</exception>
+    //    /// <exception cref = "ECapeInvalidArgument">To be used when an invalid argument value is passed, for example, an unrecognized Compound identifier or UNDEFINED for the props argument.</exception>
+    //    [System.ComponentModel.CategoryAttribute("ICapeIntegerParameterSpec")]
+    //    public int DefaultValue
+    //    {
+    //        get
+    //        {
+    //            return ((CAPEOPEN.ICapeIntegerParameterSpec)m_parameter.Specification).DefaultValue;
+    //        }
+    //        set
+    //        {
+    //        }
+    //    }
+
+    //    /// <summary>
+    //    /// Gets and sets the lower bound of the parameter.
+    //    /// </summary>
+    //    /// <remarks>
+    //    /// The lower bound can be an valid integer. By default, it is set to 
+    //    /// Int32.MinValue, 2,147,483,648; that is, hexadecimal 0x80000000
+    //    /// </remarks>
+    //    /// <value>The lower bound for the parameter. </value>
+    //    /// <exception cref ="ECapeUnknown">The error to be raised when other error(s),  specified for this operation, are not suitable.</exception>
+    //    /// <exception cref = "ECapeInvalidArgument">To be used when an invalid argument value is passed, for example, an unrecognized Compound identifier or UNDEFINED for the props argument.</exception>
+    //    [System.ComponentModel.CategoryAttribute("ICapeIntegerParameterSpec")]
+    //    public int LowerBound
+    //    {
+    //        get
+    //        {
+    //            return ((CAPEOPEN.ICapeIntegerParameterSpec)m_parameter.Specification).LowerBound;
+    //        }
+    //        set
+    //        {
+    //        }
+    //    }
+
+    //    /// <summary>
+    //    /// Gets and sets the upper bound of the parameter.
+    //    /// </summary>
+    //    /// <remarks>
+    //    /// The lower bound can be an valid integer. By default, it is set to 
+    //    /// Int32.MaxValue, 2,147,483,647; that is, hexadecimal 0x7FFFFFFF.
+    //    /// </remarks>
+    //    /// <value>The upper bound for the parameter. </value>
+    //    /// <exception cref ="ECapeUnknown">The error to be raised when other error(s),  specified for this operation, are not suitable.</exception>
+    //    /// <exception cref = "ECapeInvalidArgument">To be used when an invalid argument value is passed, for example, an unrecognized Compound identifier or UNDEFINED for the props argument.</exception>
+    //    [System.ComponentModel.CategoryAttribute("ICapeIntegerParameterSpec")]
+    //    public int UpperBound
+    //    {
+    //        get
+    //        {
+    //            return ((CAPEOPEN.ICapeIntegerParameterSpec)m_parameter.Specification).UpperBound;
+    //        }
+    //        set
+    //        {
+    //        }
+    //    }
+
+    //    /// <summary>
+    //    /// Validates the value sent against the specification of the parameter. 
+    //    /// </summary>
+    //    /// <remarks>
+    //    /// The parameter is considered valid if the current value is between 
+    //    /// the upper and lower bound. The message is used to return the reason 
+    //    /// that the parameter is invalid.
+    //    /// </remarks>
+    //    /// <returns>
+    //    /// True if the parameter is valid, false if not valid.
+    //    /// </returns>
+    //    /// <param name = "value">Integer value that will be validated against the parameter's current specification.</param>
+    //    /// <param name = "message">reference to a string that will conain a message regarding the validation of the parameter.</param>
+    //    /// <exception cref ="ECapeUnknown">The error to be raised when other error(s),  specified for this operation, are not suitable.</exception>
+    //    /// <exception cref = "ECapeInvalidArgument">To be used when an invalid argument value is passed, for example, an unrecognized Compound identifier or UNDEFINED for the props argument.</exception>
+    //    public bool Validate(int value, ref String message)
+    //    {
+    //        return ((CAPEOPEN.ICapeIntegerParameterSpec)m_parameter.Specification).Validate(value, message);
+    //    }
+    //};
 }
 

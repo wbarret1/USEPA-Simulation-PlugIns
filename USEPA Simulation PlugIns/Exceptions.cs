@@ -300,7 +300,66 @@ namespace USEPA_Simulation_PlugIns
         /// <param name = "t">The type of the class being registered.</param> 
         /// <exception cref ="ECapeUnknown">The error to be raised when other error(s), specified for this operation, are not suitable.</exception>
         [System.Runtime.InteropServices.ComRegisterFunction()]
-        public static void RegisterFunction(Type t) { }
+        public static void RegisterFunction(Type t)
+        {
+            System.Reflection.Assembly assembly = t.Assembly;
+            String versionNumber = (new System.Reflection.AssemblyName(assembly.FullName)).Version.ToString();
+
+            String keyname = String.Concat("Software\\Classes\\CLSID\\{", t.GUID.ToString(), "}");
+            //Microsoft.Win32.RegistryKey classKey = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(keyname, true);
+            Microsoft.Win32.RegistryKey classKey = Microsoft.Win32.Registry.ClassesRoot.CreateSubKey("CLSID\\{ " + t.GUID.ToString() + "}", true);
+            //Microsoft.Win32.RegistryKey catidKey = classKey.CreateSubKey("Implemented Categories", true);
+            //catidKey.CreateSubKey(COGuids.CapeOpenComponent_CATID);
+
+            //keyname = String.Concat("Software\\Classes\\CLSID\\{", t.GUID.ToString(), "}\\InprocServer32");
+            //Microsoft.Win32.RegistryKey catidKey = classKey.CreateSubKey("InprocServer32", true);
+            //Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(keyname, true);
+            //String[] keys = key.GetSubKeyNames();
+            //for (int i = 0; i < keys.Length; i++)
+            //{
+            //    if (keys[i] == versionNumber)
+            //    {
+            //        key.DeleteSubKey(keys[i]);
+            //    }
+            //}
+            //key.SetValue("CodeBase", assembly.CodeBase);
+            //key.Close();
+
+            Object[] attributes = t.GetCustomAttributes(false);
+            String nameInfoString = t.FullName;
+            String descriptionInfoString = "";
+            String versionInfoString = "";
+            String companyURLInfoString = "";
+            String helpURLInfoString = "";
+            String aboutInfoString = "";
+            for (int i = 0; i < attributes.Length; i++)
+            {
+                //if (attributes[i] is CapeFlowsheetMonitoringAttribute) catidKey.CreateSubKey(COGuids.CATID_MONITORING_OBJECT);
+                //if (attributes[i] is CapeConsumesThermoAttribute) catidKey.CreateSubKey(COGuids.Consumes_Thermo_CATID);
+                //if (attributes[i] is CapeSupportsThermodynamics10Attribute) catidKey.CreateSubKey(COGuids.SupportsThermodynamics10_CATID);
+                //if (attributes[i] is CapeSupportsThermodynamics11Attribute) catidKey.CreateSubKey(COGuids.SupportsThermodynamics11_CATID);
+                if (attributes[i] is CapeNameAttribute) nameInfoString = ((CapeNameAttribute)attributes[i]).Name;
+                if (attributes[i] is CapeDescriptionAttribute) descriptionInfoString = ((CapeDescriptionAttribute)attributes[i]).Description;
+                if (attributes[i] is CapeVersionAttribute) versionInfoString = ((CapeVersionAttribute)attributes[i]).Version;
+                if (attributes[i] is CapeVendorURLAttribute) companyURLInfoString = ((CapeVendorURLAttribute)attributes[i]).VendorURL;
+                if (attributes[i] is CapeHelpURLAttribute) helpURLInfoString = ((CapeHelpURLAttribute)attributes[i]).HelpURL;
+                if (attributes[i] is CapeAboutAttribute) aboutInfoString = ((CapeAboutAttribute)attributes[i]).About;
+            }
+            // System.Windows.Forms.MessageBox.Show("hello ImpCat");
+
+            Microsoft.Win32.RegistryKey descriptKey = classKey.CreateSubKey("CapeDescription", true);
+            descriptKey.SetValue("Name", nameInfoString);
+            descriptKey.SetValue("Description", descriptionInfoString);
+            descriptKey.SetValue("CapeVersion", versionInfoString);
+            descriptKey.SetValue("ComponentVersion", versionNumber);
+            descriptKey.SetValue("VendorURL", companyURLInfoString);
+            descriptKey.SetValue("HelpURL", helpURLInfoString);
+            descriptKey.SetValue("About", aboutInfoString);
+            //catidKey.Close();
+            descriptKey.Close();
+            classKey.Close();
+        }
+
         /// <summary>
         ///	This function controls the removal of the class from the COM registry when the class is uninstalled. 
         /// </summary>
@@ -311,7 +370,44 @@ namespace USEPA_Simulation_PlugIns
         /// <param name = "t">The type of the class being unregistered.</param> 
         /// <exception cref ="ECapeUnknown">The error to be raised when other error(s), specified for this operation, are not suitable.</exception>
         [System.Runtime.InteropServices.ComUnregisterFunction()]
-        public static void UnregisterFunction(Type t) { }
+        public static void UnregisterFunction(Type t)
+        {
+            String keyname = String.Concat("Software\\Classes\\CLSID\\{ ", t.GUID.ToString(), "}");
+            Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(keyname, true);
+            //String keyname = String.Concat("CLSID\\{", t.GUID.ToString(), "}");
+            //Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(keyname, true);
+            if (key != null)
+            {
+                String[] keyNames = key.GetSubKeyNames();
+                for (int i = 0; i < keyNames.Length; i++)
+                {
+                    key.DeleteSubKeyTree(keyNames[i]);
+                }
+                String[] valueNames = key.GetValueNames();
+                for (int i = 0; i < valueNames.Length; i++)
+                {
+                    key.DeleteValue(valueNames[i]);
+                }
+            }
+            keyname = String.Concat("\\CLSID\\{ ", t.GUID.ToString(), "}");
+            key = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(keyname, true);
+            //String keyname = String.Concat("CLSID\\{", t.GUID.ToString(), "}");
+            //Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(keyname, true);
+            if (key != null)
+            {
+                String[] keyNames = key.GetSubKeyNames();
+                for (int i = 0; i < keyNames.Length; i++)
+                {
+                    key.DeleteSubKeyTree(keyNames[i]);
+                }
+                String[] valueNames = key.GetValueNames();
+                for (int i = 0; i < valueNames.Length; i++)
+                {
+                    key.DeleteValue(valueNames[i]);
+                }
+            }
+        }
+
         // ECapeRoot method
         // returns the message string in the System.ApplicationException.
         /// <summary>
@@ -449,7 +545,7 @@ namespace USEPA_Simulation_PlugIns
     /// that occurred was not one that was suitable for any of the other errors supported by the object. </para>
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisible(true)]
+    [System.Runtime.InteropServices.ComVisible(false)]
     [System.Runtime.InteropServices.Guid("B550B2CA-6714-4e7f-813E-C93248142410")]
     [System.ComponentModel.Description("")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
