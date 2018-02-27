@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace USEPA_Simulation_PlugIns
 {
+    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public partial class GreenScopeForm : Form
     {
         string excelFileName;

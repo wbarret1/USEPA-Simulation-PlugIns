@@ -52,6 +52,7 @@ namespace USEPA_Simulation_PlugIns
     /// energy usage in the WAR algorithm.
     /// </para>
     /// </remarks>
+    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public partial class WARalgorithm : Form, IDisposable
     {
 

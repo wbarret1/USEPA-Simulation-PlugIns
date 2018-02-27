@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLLOCATION">
+            <Component Id="cmp688980DF1799634C154B91EDC8888784" Guid="*">
+                <File Id="fil5FD54261017892439C9D8E22F91A44C3" KeyPath="yes" Source="$(var.SourceDir)\Components.wxs" />
+            </Component>
+            <Component Id="cmpFED9CE4C040C6D017106CB6B92C2F157" Guid="*">
+                <File Id="fil43F031812C2D8647225696DDDF358FCA" KeyPath="yes" Source="$(var.SourceDir)\packages.config" />
+            </Component>
+            <Component Id="cmpF9B2580B07F1DDC13A71B0C3EF2A0932" Guid="*">
+                <File Id="fil9977B6B4B97943C54CE9F2E2651B6B99" KeyPath="yes" Source="$(var.SourceDir)\Product.wxs" />
+            </Component>
+            <Component Id="cmpCD111C0280F16443642B96DEFBD577E3" Guid="*">
+                <File Id="fil39850A954471BADE85C6B8B8FE16D9E0" KeyPath="yes" Source="$(var.SourceDir)\ProductInstallFiles.wxs" />
+            </Component>
+            <Component Id="cmpA49A2080FEF6BEDD78C2921672D9FF4B" Guid="*">
+                <File Id="fil6D34D191E723E1D1E2A02F5AC6712636" KeyPath="yes" Source="$(var.SourceDir)\USEPASimulationPlugInsSetup.wixproj" />
+            </Component>
+            <Directory Id="dirBD8892FBCC64DA5924D7F747259B8B87" Name="bin">
+                <Directory Id="dir92B449F084B5D397E45DBD9B6F84D86C" Name="Debug">
+                    <Component Id="cmpE904181F9FF175702830E87B46CC6545" Guid="*">
+                        <File Id="filB30F7EBB84CDDA240BEECB187BE9BCE4" KeyPath="yes" Source="$(var.SourceDir)\bin\Debug\USEPASimulationPlugInsSetup.msi" />
+                    </Component>
+                    <Component Id="cmpD562419D8D30B0E6A17263677AABB6D1" Guid="*">
+                        <File Id="fil35E9BA14C2089DAA44BDC05F491BCFD0" KeyPath="yes" Source="$(var.SourceDir)\bin\Debug\USEPASimulationPlugInsSetup.wixpdb" />
+                    </Component>
+                </Directory>
+            </Directory>
+            <Directory Id="dir6D5EFFE51CD5B01FC475BBA3CDFE00B3" Name="obj">
+                <Directory Id="dir4086C1A0B4E483EA6E14BF35B68F4413" Name="Debug">
+                    <Component Id="cmp6EAF1B3A3BE2567F7BCB069089063861" Guid="*">
+                        <File Id="filF050461370115D4CDA42289C3CA8957E" KeyPath="yes" Source="$(var.SourceDir)\obj\Debug\Product.wixobj" />
+                    </Component>
+                    <Component Id="cmp6DCF3306903345F79981B44C1F01CD41" Guid="*">
+                        <File Id="filF7B761C0D3C1B36BBC881C301FBFCE4A" KeyPath="yes" Source="$(var.SourceDir)\obj\Debug\USEPASimulationPlugInsSetup.wixproj.BindBuiltOutputsFileListnull.txt" />
+                    </Component>
+                    <Component Id="cmpF85E5414D724B806ADE8C733B170A6E6" Guid="*">
+                        <File Id="fil9D385C4F0A0646170C9568AF216959F8" KeyPath="yes" Source="$(var.SourceDir)\obj\Debug\USEPASimulationPlugInsSetup.wixproj.BindContentsFileListnull.txt" />
+                    </Component>
+                    <Component Id="cmpD2D330066D56D5A8D6ED80BDE9411841" Guid="*">
+                        <File Id="fil481B6CC52E164CC913887D1D00388F4E" KeyPath="yes" Source="$(var.SourceDir)\obj\Debug\USEPASimulationPlugInsSetup.wixproj.BindOutputsFileListnull.txt" />
+                    </Component>
+                    <Component Id="cmp55B5DD6917723984243BF8D551ED9D93" Guid="*">
+                        <File Id="filFF038F3762DE64C951007AF1727DB829" KeyPath="yes" Source="$(var.SourceDir)\obj\Debug\USEPASimulationPlugInsSetup.wixproj.FileList.txt" />
+                    </Component>
+                    <Component Id="cmpCEA281F8A077BB2C417692B3ACEC49DF" Guid="*">
+                        <File Id="filDE2D1CA90BCE0902D19FB6025A819178" KeyPath="yes" Source="$(var.SourceDir)\obj\Debug\__dir.wxs" />
+                    </Component>
+                </Directory>
+            </Directory>
+        </DirectoryRef>
+    </Fragment>
+</Wix>

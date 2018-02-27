@@ -15,7 +15,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
-    <DefineConstants>Debug</DefineConstants>
+    <DefineConstants>Debug;SourceDir=$(SolutionDir)USEPA Simulation PlugIns\bin\$(Configuration)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -52,29 +52,34 @@
 	To modify your build process, add your task inside one of the targets below and uncomment it.
 	Other similar extension points exist, see Wix.targets.
 -->
-	<Target Name="BeforeBuild">
-	<HeatDirectory 
-
-      OutputFile="$(ProjectDir)\ProductInstallFiles.wxs" 
-
-      Directory="..\USEPA Simulation PlugIns" 
-
-      ComponentGroupName="ProductFilesComponentGroup" 
-
-      DirectoryRefId="INSTALLLOCATION" 
-
-      AutogenerateGuids="true" 
-
-      PreprocessorVariable="var.USEPASimulationPlugIns.ProjectDir" 
-
-      SuppressRegistry="true" 
-
-      SuppressRootDirectory="true" 
-
-      ToolPath="$(WixToolPath)" 
-
-      NoLogo="true" />
+  <Target Name="BeforeBuild">
+    <!--
+    <HeatDirectory
+    NoLogo="$(HarvestDirectoryNoLogo)"
+    SuppressAllWarnings="$(HarvestDirectorySuppressAllWarnings)"
+    SuppressSpecificWarnings="$(HarvestDirectorySuppressSpecificWarnings)"
+    ToolPath="$(WixToolPath)"
+    TreatWarningsAsErrors="$(HarvestDirectoryTreatWarningsAsErrors)"
+    TreatSpecificWarningsAsErrors="$(HarvestDirectoryTreatSpecificWarningsAsErrors)"
+    VerboseOutput="$(HarvestDirectoryVerboseOutput)"
+    AutogenerateGuids="$(HarvestDirectoryAutogenerateGuids)"
+    GenerateGuidsNow="$(HarvestDirectoryGenerateGuidsNow)"
+    OutputFile="Components.wxs"
+    SuppressFragments="$(HarvestDirectorySuppressFragments)"
+    SuppressUniqueIds="$(HarvestDirectorySuppressUniqueIds)"
+    Transforms="%(HarvestDirectory.Transforms)"
+    Directory="$(ProjectDir)"
+    ComponentGroupName="%(HarvestDirectory.ComponentGroupName)"
+    DirectoryRefId="INSTALLLOCATION"
+    KeepEmptyDirectories="%(HarvestDirectory.KeepEmptyDirectories)"
+    PreprocessorVariable="var.SourceDir"
+    SuppressCom="%(HarvestDirectory.SuppressCom)"
+    SuppressRootDirectory="true"
+    SuppressRegistry="%(HarvestDirectory.SuppressRegistry)" />
+ -->
   </Target>
-	<Target Name="AfterBuild">
-	</Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
 </Project>
