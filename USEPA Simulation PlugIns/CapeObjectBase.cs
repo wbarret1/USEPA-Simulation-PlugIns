@@ -367,7 +367,7 @@ namespace USEPA_Simulation_PlugIns
 
             String keyname = String.Concat("Software\\Classes\\CLSID\\{", t.GUID.ToString(), "}");
             //Microsoft.Win32.RegistryKey classKey = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(keyname, true);
-            Microsoft.Win32.RegistryKey classKey = Microsoft.Win32.Registry.ClassesRoot.CreateSubKey("CLSID\\{ " + t.GUID.ToString() + "}", true);
+            Microsoft.Win32.RegistryKey classKey = Microsoft.Win32.Registry.ClassesRoot.CreateSubKey("CLSID\\{" + t.GUID.ToString() + "}", true);
             Microsoft.Win32.RegistryKey catidKey = classKey.CreateSubKey("Implemented Categories", true);
             catidKey.CreateSubKey(COGuids.CapeOpenComponent_CATID);
 

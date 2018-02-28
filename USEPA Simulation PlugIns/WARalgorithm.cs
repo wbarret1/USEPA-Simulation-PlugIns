@@ -118,7 +118,6 @@ namespace USEPA_Simulation_PlugIns
                 compounds.Columns.Add("Compound Name", typeof(System.String));
                 compounds.Columns.Add("CAS Number", typeof(System.String));
                 compounds.Columns.Add("Chemical Formula", typeof(System.String));
-                compounds.Columns.Add("Structural Formula", typeof(System.String));
                 compounds.Columns.Add("Molecular Weight", typeof(double));
                 compounds.Columns.Add("Human Ingestion Impact", typeof(double));
                 compounds.Columns.Add("Human Dermal Impact", typeof(double));
@@ -309,20 +308,24 @@ namespace USEPA_Simulation_PlugIns
             energy = 0;
             foreach (CAPEOPEN.ICapeIdentification p_Stream in p_InletStreams)
             {
-                if (p_Stream is CAPEOPEN.ICapeThermoMaterialObject)
+                if (p_Stream is CAPEOPEN.ICapeThermoMaterial)
                 {
-                    CAPEOPEN.ICapeThermoMaterialObject p_TMO = (CAPEOPEN.ICapeThermoMaterialObject)p_Stream;
-                    String[] comps = (String[])(p_TMO.ComponentIds);
+                    CAPEOPEN.ICapeThermoMaterial p_TMO = (CAPEOPEN.ICapeThermoMaterial)p_Stream;
+                    CAPEOPEN.ICapeThermoCompounds p_TCompounds = (CAPEOPEN.ICapeThermoCompounds)p_Stream;
+                    object obj1 = null;
+                    object obj2 = null;
+                    object obj3 = null;
+                    object obj4 = null;
+                    object obj5 = null;
+                    object obj6 = null;
+                    p_TCompounds.GetCompoundList(ref obj1, ref obj2, ref obj3, ref obj4, ref obj5, ref obj6);
+                    String[] comps = (String[])obj1;
                     String[] propNames = new String[1];
-                    propNames[0] = "casRegistryNumber";
-                    Object[] casNos = (Object[])p_TMO.GetComponentConstant(propNames, comps);
-                    propNames[0] = "chemicalFormula";
-                    Object[] chemForms = (Object[])p_TMO.GetComponentConstant(propNames, comps);
-                    propNames[0] = "structureFormula";
-                    Object[] structForms = (Object[])p_TMO.GetComponentConstant(propNames, comps);
-                    propNames[0] = "molecularWeight";
-                    Object[] molWts = (Object[])p_TMO.GetComponentConstant(propNames, comps);
-                    double[] inletFlow = (double[])p_TMO.GetProp("flow", "overall", comps, null, "mass");
+                    string[] casNos = (string[])obj6;
+                    string[] chemForms = (string[])obj2;
+                    double[] molWts = (double[])obj5;
+                    p_TMO.GetOverallProp("flow", "mass", ref obj1);
+                    double[] inletFlow = (double[])obj1;
                     for (int i = 0; i < comps.Length; i++)
                     {
                         bool needsAdded = true;
@@ -340,12 +343,10 @@ namespace USEPA_Simulation_PlugIns
                             newRow["Compound Name"] = comps[i];
                             newRow["CAS Number"] = casNos[i].ToString();
                             newRow["Chemical Formula"] = chemForms[i].ToString();
-                            newRow["Structural Formula"] = structForms[i].ToString();
                             newRow["Molecular Weight"] = Convert.ToDouble(molWts[i]);
                             if (!streams.Columns.Contains(comps[i])) streams.Columns.Add(comps[i]);
                         }
                     }
-                    if (System.Runtime.InteropServices.Marshal.IsComObject(p_TMO)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_TMO);
                 }
                 else
                 {
@@ -359,24 +360,27 @@ namespace USEPA_Simulation_PlugIns
                         if (System.Runtime.InteropServices.Marshal.IsComObject(p_Param)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_Param);
                     }
                 }
-                if (System.Runtime.InteropServices.Marshal.IsComObject(p_Stream)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_Stream);
             }
             foreach (CAPEOPEN.ICapeIdentification p_Stream in p_OutletStreams)
             {
-                if (p_Stream is CAPEOPEN.ICapeThermoMaterialObject)
+                if (p_Stream is CAPEOPEN.ICapeThermoMaterial)
                 {
-                    CAPEOPEN.ICapeThermoMaterialObject p_TMO = (CAPEOPEN.ICapeThermoMaterialObject)p_Stream;
-                    String[] comps = (String[])p_TMO.ComponentIds;
+                    CAPEOPEN.ICapeThermoMaterial p_TMO = (CAPEOPEN.ICapeThermoMaterial)p_Stream;
+                    CAPEOPEN.ICapeThermoCompounds p_TCompounds = (CAPEOPEN.ICapeThermoCompounds)p_Stream;
+                    object obj1 = null;
+                    object obj2 = null;
+                    object obj3 = null;
+                    object obj4 = null;
+                    object obj5 = null;
+                    object obj6 = null;
+                    p_TCompounds.GetCompoundList(ref obj1, ref obj2, ref obj3, ref obj4, ref obj5, ref obj6);
+                    String[] comps = (String[])obj1;
                     String[] propNames = new String[1];
-                    propNames[0] = "casRegistryNumber";
-                    Object[] casNos = (Object[])p_TMO.GetComponentConstant(propNames, comps);
-                    propNames[0] = "chemicalFormula";
-                    Object[] chemForms = (Object[])p_TMO.GetComponentConstant(propNames, comps);
-                    propNames[0] = "structureFormula";
-                    Object[] structForms = (Object[])p_TMO.GetComponentConstant(propNames, comps);
-                    propNames[0] = "molecularWeight";
-                    Object[] molWts = (Object[])p_TMO.GetComponentConstant(propNames, comps);
-                    double[] inletFlow = (double[])p_TMO.GetProp("flow", "overall", comps, null, "mass");
+                    string[] casNos = (string[])obj6;
+                    string[] chemForms = (string[])obj2;
+                    double[] molWts = (double[])obj5;
+                    p_TMO.GetOverallProp("flow", "mass", ref obj1);
+                    double[] outletFlow = (double[])obj1;
                     for (int i = 0; i < comps.Length; i++)
                     {
                         bool needsAdded = true;
@@ -394,12 +398,10 @@ namespace USEPA_Simulation_PlugIns
                             newRow["Compound Name"] = comps[i];
                             newRow["CAS Number"] = casNos[i].ToString();
                             newRow["Chemical Formula"] = chemForms[i].ToString();
-                            newRow["Structural Formula"] = structForms[i].ToString();
                             newRow["Molecular Weight"] = Convert.ToDouble(molWts[i]);
                             if (!streams.Columns.Contains(comps[i])) streams.Columns.Add(comps[i]);
                         }
                     }
-                    if (System.Runtime.InteropServices.Marshal.IsComObject(p_TMO)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_TMO);
                 }
                 else
                 {
@@ -409,11 +411,8 @@ namespace USEPA_Simulation_PlugIns
                         CAPEOPEN.ICapeParameter p_Param = (CAPEOPEN.ICapeParameter)p_Coll.Item("work");
                         double energyFlow = Convert.ToDouble(p_Param.value);
                         energy = energy + energyFlow * 3600 / 1000000;
-                        if (System.Runtime.InteropServices.Marshal.IsComObject(p_Coll)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_Coll);
-                        if (System.Runtime.InteropServices.Marshal.IsComObject(p_Param)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_Param);
                     }
                 }
-                if (System.Runtime.InteropServices.Marshal.IsComObject(p_Stream)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_Stream);
             }
         }
 
@@ -484,7 +483,6 @@ namespace USEPA_Simulation_PlugIns
                                 this.label5.Text = "NOTE: Not all energy Ports are connected.";
                         }
                         if (System.Runtime.InteropServices.Marshal.IsComObject(p_Port)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_Port);
-
                     }
                 }
                 if (System.Runtime.InteropServices.Marshal.IsComObject(p_UnitPortColl)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_UnitPortColl);
@@ -492,16 +490,16 @@ namespace USEPA_Simulation_PlugIns
             }
             foreach (CAPEOPEN.ICapeIdentification p_Id in p_InletStreams)
             {
-                if (p_Id is CAPEOPEN.ICapeThermoMaterialObject)
+                if (p_Id is CAPEOPEN.ICapeThermoMaterial)
                 {
                     this.feedAndInletStreamListBox.Items.Add(p_Id.ComponentName);
                 }
             }
             foreach (CAPEOPEN.ICapeIdentification p_Id1 in p_OutletStreams)
             {
-                if (p_Id1 is CAPEOPEN.ICapeThermoMaterialObject)
+                if (p_Id1 is CAPEOPEN.ICapeThermoMaterial)
                 {
-                    CAPEOPEN.ICapeThermoMaterialObject p_MO = (CAPEOPEN.ICapeThermoMaterialObject)p_Id1;
+                    CAPEOPEN.ICapeThermoMaterial p_MO = (CAPEOPEN.ICapeThermoMaterial)p_Id1;
                     this.checkedListBox1.Items.Add(p_Id1.ComponentName, false);
                 }
             }
@@ -644,16 +642,32 @@ namespace USEPA_Simulation_PlugIns
                 productFlow = 0.0;
                 foreach (CAPEOPEN.ICapeIdentification p_Stream in p_InletStreams)
                 {
-                    if (p_Stream is CAPEOPEN.ICapeThermoMaterialObject)
+                    if (p_Stream is CAPEOPEN.ICapeThermoMaterial)
                     {
-                        CAPEOPEN.ICapeThermoMaterialObject p_TMO = (CAPEOPEN.ICapeThermoMaterialObject)p_Stream;
+                        CAPEOPEN.ICapeThermoMaterial p_TMO = (CAPEOPEN.ICapeThermoMaterial)p_Stream;
+                        CAPEOPEN.ICapeThermoCompounds p_TCompounds = (CAPEOPEN.ICapeThermoCompounds)p_Stream;
                         System.Data.DataRow row = streams.NewRow();
                         streams.Rows.Add(row);
                         row["Stream Name"] = p_Stream.ComponentName;
                         row["Type"] = "Inlet";
-                        String[] comps = (String[])p_TMO.ComponentIds;
-                        double[] fraction = (double[])p_TMO.GetProp("Fraction", "overall", comps, null, "mass");
-                        double[] flow = (double[])p_TMO.GetProp("totalFlow", "overall", null, null, "mass");
+                        object obj1 = null;
+                        object obj2 = null;
+                        object obj3 = null;
+                        object obj4 = null;
+                        object obj5 = null;
+                        object obj6 = null;
+                        p_TCompounds.GetCompoundList(ref obj1, ref obj2, ref obj3, ref obj4, ref obj5, ref obj6);
+                        String[] comps = (String[])obj1;
+                        String[] propNames = new String[1];
+                        string[] casNos = (string[])obj6;
+                        string[] chemForms = (string[])obj2;
+                        double[] molWts = (double[])obj5;
+                        p_TMO.GetOverallProp("flow", "mass", ref obj1);
+                        double[] inletFlow = (double[])obj1;
+                        p_TMO.GetOverallProp("Fraction", "mass", ref obj1);
+                        double[] fraction = (double[])obj1;
+                        p_TMO.GetOverallProp("totalFlow", "mass", ref obj1);
+                        double[] flow = (double[])obj1;
                         row["Total Flow"] = flow[0] * 3600;
                         double humanIngest = 0.0;
                         double humanDermal = 0.0;
@@ -698,23 +712,37 @@ namespace USEPA_Simulation_PlugIns
                         iDot = iDot + Convert.ToDouble(this.numericUpDown7.Value) * Convert.ToDouble(row["Photochemical Oxidation"]);
                         iDot = iDot + Convert.ToDouble(this.numericUpDown8.Value) * Convert.ToDouble(row["Acidification"]);
                         row["I Dot"] = iDot;
-                        if (System.Runtime.InteropServices.Marshal.IsComObject(p_TMO)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_TMO);
-
                     }
                 }
                 foreach (CAPEOPEN.ICapeIdentification p_Stream in p_OutletStreams)
                 {
-                    if (p_Stream is CAPEOPEN.ICapeThermoMaterialObject)
+                    if (p_Stream is CAPEOPEN.ICapeThermoMaterial)
                     {
-                        CAPEOPEN.ICapeThermoMaterialObject p_TMO = (CAPEOPEN.ICapeThermoMaterialObject)p_Stream;
+                        CAPEOPEN.ICapeThermoMaterial p_TMO = (CAPEOPEN.ICapeThermoMaterial)p_Stream;
+                        CAPEOPEN.ICapeThermoCompounds p_TCompounds = (CAPEOPEN.ICapeThermoCompounds)p_Stream;
                         System.Data.DataRow row = streams.NewRow();
                         streams.Rows.Add(row);
-                        String name = p_Stream.ComponentName;
-                        row["Stream Name"] = name;
-                        row["Type"] = "Waste";
-                        String[] comps = (String[])p_TMO.ComponentIds;
-                        double[] fraction = (double[])p_TMO.GetProp("Fraction", "overall", comps, null, "mass");
-                        double[] flow = (double[])p_TMO.GetProp("totalFlow", "overall", null, null, "mass");
+                        string name = p_Stream.ComponentName;
+                        row["Stream Name"] = p_Stream.ComponentName;
+                        row["Type"] = "Inlet";
+                        object obj1 = null;
+                        object obj2 = null;
+                        object obj3 = null;
+                        object obj4 = null;
+                        object obj5 = null;
+                        object obj6 = null;
+                        p_TCompounds.GetCompoundList(ref obj1, ref obj2, ref obj3, ref obj4, ref obj5, ref obj6);
+                        String[] comps = (String[])obj1;
+                        String[] propNames = new String[1];
+                        string[] casNos = (string[])obj6;
+                        string[] chemForms = (string[])obj2;
+                        double[] molWts = (double[])obj5;
+                        p_TMO.GetOverallProp("flow", "mass", ref obj1);
+                        double[] inletFlow = (double[])obj1;
+                        p_TMO.GetOverallProp("Fraction", "mass", ref obj1);
+                        double[] fraction = (double[])obj1;
+                        p_TMO.GetOverallProp("totalFlow", "mass", ref obj1);
+                        double[] flow = (double[])obj1;
                         row["Total Flow"] = flow[0] * 3600;
                         double humanIngest = 0.0;
                         double humanDermal = 0.0;
@@ -767,7 +795,6 @@ namespace USEPA_Simulation_PlugIns
                         iDot = iDot + Convert.ToDouble(this.numericUpDown7.Value) * Convert.ToDouble(row["Photochemical Oxidation"]);
                         iDot = iDot + Convert.ToDouble(this.numericUpDown8.Value) * Convert.ToDouble(row["Acidification"]);
                         row["I Dot"] = iDot;
-                        if (System.Runtime.InteropServices.Marshal.IsComObject(p_TMO)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_TMO);
                     }
                 }
                 System.Data.DataRow row1 = streams.NewRow();
@@ -1419,14 +1446,14 @@ namespace USEPA_Simulation_PlugIns
                     }
                     foreach (CAPEOPEN.ICapeIdentification p_Id1 in p_InletStreams)
                     {
-                        if ((p_Id1 is CAPEOPEN.ICapeThermoMaterialObject) || (p_Id1 is CAPEOPEN.ICapeThermoMaterialObject))
+                        if ((p_Id1 is CAPEOPEN.ICapeThermoMaterial) || (p_Id1 is CAPEOPEN.ICapeThermoMaterial))
                         {
                             this.feedAndInletStreamListBox.Items.Add(p_Id1.ComponentName);
                         }
                     }
                     foreach (CAPEOPEN.ICapeIdentification p_Id2 in p_OutletStreams)
                     {
-                        if ((p_Id2 is CAPEOPEN.ICapeThermoMaterialObject) || (p_Id2 is CAPEOPEN.ICapeThermoMaterialObject))
+                        if ((p_Id2 is CAPEOPEN.ICapeThermoMaterial) || (p_Id2 is CAPEOPEN.ICapeThermoMaterial))
                         {
                             this.checkedListBox1.Items.Add(p_Id2.ComponentName, false);
                         }
@@ -1453,8 +1480,6 @@ namespace USEPA_Simulation_PlugIns
             }
             this.UpdateStreams();
             this.warCalculation();
-
         }
-
     }
 }

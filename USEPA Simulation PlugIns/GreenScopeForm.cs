@@ -269,32 +269,33 @@ namespace USEPA_Simulation_PlugIns
                 }
                 else if (p_Stream is CAPEOPEN.ICapeThermoMaterialObject)
                 {
-                    CAPEOPEN.ICapeThermoMaterialObject p_TMO = (CAPEOPEN.ICapeThermoMaterialObject)p_Stream;
-                    System.Data.DataRow row = table.NewRow();
-                    table.Rows.Add(row);
-                    row["Stream Name"] = p_Stream.ComponentName;
-                    row["Type"] = "Inlet";
-                    String[] comps = (String[])p_TMO.ComponentIds;
-                    String[] phases = (String[])p_TMO.PhaseIds;
-                    bool VaporPresent = false;
-                    foreach (string str in (string[])phases)
-                    {
-                        if (str.Equals("vapor", StringComparison.CurrentCultureIgnoreCase)) VaporPresent = true;
-                    }
-                    double[] fraction = { 0 };
-                    if (VaporPresent)
-                    {
-                        fraction = (double[])p_TMO.GetProp("fraction", "vapor", null, null, "mole");
-                    }
-                    row["MVF"] = fraction[0];
-                    double[] flow = (double[])p_TMO.GetProp("totalFlow", "overall", null, null, "mass");
-                    row["Total Flow"] = flow[0] * 3600;
-                    fraction = (double[])p_TMO.GetProp("fraction", "overall", comps, null, "mole");
-                    for (int i = 0; i < comps.Length; i++)
-                    {
-                        row[comps[i]] = fraction[i];
-                    }
-                    if (System.Runtime.InteropServices.Marshal.IsComObject(p_TMO)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_TMO);
+                    System.Windows.Forms.MessageBox.Show("Flowsheet Monitoring no longer supports Thermodynamics 1.0.", "Thermo 1.0 not supported", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    //CAPEOPEN.ICapeThermoMaterialObject p_TMO = (CAPEOPEN.ICapeThermoMaterialObject)p_Stream;
+                    //System.Data.DataRow row = table.NewRow();
+                    //table.Rows.Add(row);
+                    //row["Stream Name"] = p_Stream.ComponentName;
+                    //row["Type"] = "Inlet";
+                    //String[] comps = (String[])p_TMO.ComponentIds;
+                    //String[] phases = (String[])p_TMO.PhaseIds;
+                    //bool VaporPresent = false;
+                    //foreach (string str in (string[])phases)
+                    //{
+                    //    if (str.Equals("vapor", StringComparison.CurrentCultureIgnoreCase)) VaporPresent = true;
+                    //}
+                    //double[] fraction = { 0 };
+                    //if (VaporPresent)
+                    //{
+                    //    fraction = (double[])p_TMO.GetProp("fraction", "vapor", null, null, "mole");
+                    //}
+                    //row["MVF"] = fraction[0];
+                    //double[] flow = (double[])p_TMO.GetProp("totalFlow", "overall", null, null, "mass");
+                    //row["Total Flow"] = flow[0] * 3600;
+                    //fraction = (double[])p_TMO.GetProp("fraction", "overall", comps, null, "mole");
+                    //for (int i = 0; i < comps.Length; i++)
+                    //{
+                    //    row[comps[i]] = fraction[i];
+                    //}
+                    //if (System.Runtime.InteropServices.Marshal.IsComObject(p_TMO)) System.Runtime.InteropServices.Marshal.ReleaseComObject(p_TMO);
                 }
             }
         }

@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("USEPA Simulation PlugIns")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Contains the WAR algorithm implementation based upon the CAPE-OPEN Primary Interop Assembly.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("U.S. EPA")]
+[assembly: AssemblyCompany("U.S. Environmental Protection Agency")]
 [assembly: AssemblyProduct("USEPA Simulation PlugIns")]
-[assembly: AssemblyCopyright("Copyright © U.S. EPA 2016")]
+[assembly: AssemblyCopyright("Copyright © U.S. EPA 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
