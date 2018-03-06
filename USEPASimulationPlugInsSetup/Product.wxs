@@ -6,7 +6,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <Product Id="*" Name="USEPASimulationPlugInsSetup" 
            Language="1033" 
-           Version="1.0.1.1" 
+           Version="1.0.2.1" 
            Manufacturer="US Environmental Protection Agency" 
            UpgradeCode="$(var.UpgradeCode)">
     

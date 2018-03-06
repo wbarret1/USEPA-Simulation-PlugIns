@@ -362,28 +362,19 @@ namespace USEPA_Simulation_PlugIns
         [System.Runtime.InteropServices.ComRegisterFunction()]
         public static void RegisterFunction(Type t)
         {
+            RegistrationHelper(Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.ClassesRoot, Microsoft.Win32.RegistryView.Registry32), t);
+            RegistrationHelper(Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.ClassesRoot, Microsoft.Win32.RegistryView.Registry64), t);
+        }
+
+        private static void RegistrationHelper(Microsoft.Win32.RegistryKey baseKey, Type t)
+        {
             System.Reflection.Assembly assembly = t.Assembly;
             String versionNumber = (new System.Reflection.AssemblyName(assembly.FullName)).Version.ToString();
 
-            String keyname = String.Concat("Software\\Classes\\CLSID\\{", t.GUID.ToString(), "}");
-            //Microsoft.Win32.RegistryKey classKey = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(keyname, true);
-            Microsoft.Win32.RegistryKey classKey = Microsoft.Win32.Registry.ClassesRoot.CreateSubKey("CLSID\\{" + t.GUID.ToString() + "}", true);
-            Microsoft.Win32.RegistryKey catidKey = classKey.CreateSubKey("Implemented Categories", true);
+            String keyname = String.Concat("CLSID\\{", t.GUID.ToString(), "}");
+            Microsoft.Win32.RegistryKey classKey = baseKey.CreateSubKey(keyname);
+            Microsoft.Win32.RegistryKey catidKey = classKey.CreateSubKey("Implemented Categories");
             catidKey.CreateSubKey(COGuids.CapeOpenComponent_CATID);
-
-            //keyname = String.Concat("Software\\Classes\\CLSID\\{", t.GUID.ToString(), "}\\InprocServer32");
-            //Microsoft.Win32.RegistryKey catidKey = classKey.CreateSubKey("InprocServer32", true);
-            //Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(keyname, true);
-            //String[] keys = key.GetSubKeyNames();
-            //for (int i = 0; i < keys.Length; i++)
-            //{
-            //    if (keys[i] == versionNumber)
-            //    {
-            //        key.DeleteSubKey(keys[i]);
-            //    }
-            //}
-            //key.SetValue("CodeBase", assembly.CodeBase);
-            //key.Close();
 
             Object[] attributes = t.GetCustomAttributes(false);
             String nameInfoString = t.FullName;
@@ -405,9 +396,8 @@ namespace USEPA_Simulation_PlugIns
                 if (attributes[i] is CapeHelpURLAttribute) helpURLInfoString = ((CapeHelpURLAttribute)attributes[i]).HelpURL;
                 if (attributes[i] is CapeAboutAttribute) aboutInfoString = ((CapeAboutAttribute)attributes[i]).About;
             }
-            // System.Windows.Forms.MessageBox.Show("hello ImpCat");
 
-            Microsoft.Win32.RegistryKey descriptKey = classKey.CreateSubKey("CapeDescription", true);
+            Microsoft.Win32.RegistryKey descriptKey = classKey.CreateSubKey("CapeDescription");
             descriptKey.SetValue("Name", nameInfoString);
             descriptKey.SetValue("Description", descriptionInfoString);
             descriptKey.SetValue("CapeVersion", versionInfoString);
@@ -419,13 +409,11 @@ namespace USEPA_Simulation_PlugIns
             descriptKey.Close();
             classKey.Close();
         }
-
-
         /// <summary>
-        ///	This function controls the removal of the class from the COM registry when the class is uninstalled.  
+        ///	This function controls the removal of the class from the COM registry when the class is unistalled.  
         /// </summary>
         /// <remarks>
-        ///	The method will remove all subkeys added to the class' registration, including the CAPE-OPEN
+        ///	The method will remove all subkeys added to the class' regristration, including the CAPE-OPEN
         /// specific keys added in the <see cref ="RegisterFunction"/> method.
         /// </remarks>
         /// <param name = "t">The type of the class being unregistered.</param> 
@@ -433,40 +421,14 @@ namespace USEPA_Simulation_PlugIns
         [System.Runtime.InteropServices.ComUnregisterFunction()]
         public static void UnregisterFunction(Type t)
         {
-            String keyname = String.Concat("Software\\Classes\\CLSID\\{ ", t.GUID.ToString(), "}");
-            Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(keyname, true);
-            //String keyname = String.Concat("CLSID\\{", t.GUID.ToString(), "}");
-            //Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(keyname, true);
-            if (key != null)
-            {
-                String[] keyNames = key.GetSubKeyNames();
-                for (int i = 0; i < keyNames.Length; i++)
-                {
-                    key.DeleteSubKeyTree(keyNames[i]);
-                }
-                String[] valueNames = key.GetValueNames();
-                for (int i = 0; i < valueNames.Length; i++)
-                {
-                    key.DeleteValue(valueNames[i]);
-                }
-            }
-            keyname = String.Concat("\\CLSID\\{ ", t.GUID.ToString(), "}");
-            key = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(keyname, true);
-            //String keyname = String.Concat("CLSID\\{", t.GUID.ToString(), "}");
-            //Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(keyname, true);
-            if (key != null)
-            {
-                String[] keyNames = key.GetSubKeyNames();
-                for (int i = 0; i < keyNames.Length; i++)
-                {
-                    key.DeleteSubKeyTree(keyNames[i]);
-                }
-                String[] valueNames = key.GetValueNames();
-                for (int i = 0; i < valueNames.Length; i++)
-                {
-                    key.DeleteValue(valueNames[i]);
-                }
-            }
+            UnregisterHelper(Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.ClassesRoot, Microsoft.Win32.RegistryView.Registry32), t);
+            UnregisterHelper(Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.ClassesRoot, Microsoft.Win32.RegistryView.Registry64), t);
+        }
+
+        private static void UnregisterHelper(Microsoft.Win32.RegistryKey baseKey, Type t)
+        {
+            String keyname = String.Concat("CLSID\\{", t.GUID.ToString(), "}");
+            baseKey.DeleteSubKeyTree(keyname, false);
         }
 
         /// <summary>
