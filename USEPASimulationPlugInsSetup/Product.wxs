@@ -4,7 +4,7 @@
 <?define UpgradeCode="5ED66FE4-933F-4472-8D17-E60514E8F349"?>
 
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="USEPASimulationPlugInsSetup" 
+  <Product Id="*" Name="USEPASimulationPlugInsSetup64" 
            Language="1033" 
            Version="1.0.2.1" 
            Manufacturer="US Environmental Protection Agency" 
@@ -37,7 +37,7 @@
 
   <Fragment>
     <Directory Id="TARGETDIR" Name="SourceDir">
-      <Directory Id="ProgramFilesFolder">
+      <Directory Id="ProgramFilesFolder64">
         <Directory Id="INSTALLFOLDER" Name="USEPASimulationPlugInsSetup" />
       </Directory>
     </Directory>
@@ -49,7 +49,7 @@
       <!-- <Component Id="ProductComponent"> -->
       <!-- TODO: Insert files, registry keys, and other resources here. -->
       <!-- </Component> -->
-      <Component Id="ProductComponent" Guid = "A6426CF5-A5B8-43A3-9448-44C5D589D1F6">
+      <Component Id="ProductComponent" Guid = "A6426CF5-A5B8-43A3-9448-44C5D589D1F6" Win64="yes">
         <!-- TODO: Insert files, registry keys, and other resources here. -->
         <!--
         <File Source="$(var.USEPA Simulation PlugIns.TargetPath)" />
