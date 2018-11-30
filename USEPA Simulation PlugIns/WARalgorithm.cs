@@ -53,7 +53,7 @@ namespace USEPA_Simulation_PlugIns
     /// </para>
     /// </remarks>
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
-    public partial class WARalgorithm : Form
+    public partial class WARalgorithm : Form, IDisposable
     {
 
         private System.Data.DataTable warData;
@@ -156,6 +156,58 @@ namespace USEPA_Simulation_PlugIns
             {
                 System.Windows.Forms.MessageBox.Show(p_Ex.Message);
             }
+        }
+
+        ~WARalgorithm()
+        {
+            Dispose(false);
+        }
+
+        bool disposed = false;
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                foreach (object obj in p_Streams)
+                {
+                    if (System.Runtime.InteropServices.Marshal.IsComObject(obj))
+                    {
+                        System.Runtime.InteropServices.Marshal.FinalReleaseComObject(obj);
+                    }
+                }
+                foreach (object obj in p_InletStreams)
+                {
+                    if (System.Runtime.InteropServices.Marshal.IsComObject(obj))
+                    {
+                        System.Runtime.InteropServices.Marshal.FinalReleaseComObject(obj);
+                    }
+                }
+                foreach (object obj in p_OutletStreams)
+                {
+                    if (System.Runtime.InteropServices.Marshal.IsComObject(obj))
+                    {
+                        System.Runtime.InteropServices.Marshal.FinalReleaseComObject(obj);
+                    }
+                }
+                foreach (object obj in p_Units)
+                {
+                    if (System.Runtime.InteropServices.Marshal.IsComObject(obj))
+                    {
+                        System.Runtime.InteropServices.Marshal.FinalReleaseComObject(obj);
+                    }
+                }
+                //if (System.Runtime.InteropServices.Marshal.IsComObject(p_Monitoring))
+                //{
+                //    System.Runtime.InteropServices.Marshal.ReleaseComObject(p_Monitoring);
+                //}
+            }
+            disposed = true;
+            // Call base class implementation.
+            base.Dispose(disposing);
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
