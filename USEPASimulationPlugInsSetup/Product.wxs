@@ -1,38 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- See https://stackoverflow.com/questions/500703/how-to-get-wix-to-update-a-previously-installed-version-of-a-program -->
-<!-- GUID created on Feb 28, 2018 for USEPA Simulation Plug-ins. Please change if copies and pasted into a new installer. -->
-<?define UpgradeCode="5ED66FE4-933F-4472-8D17-E60514E8F349"?>
-
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="USEPASimulationPlugInsSetup" 
-           Language="1033" 
-           Version="1.0.2.1" 
-           Manufacturer="US Environmental Protection Agency" 
-           UpgradeCode="$(var.UpgradeCode)">
-    
-    <Package InstallerVersion="200" 
-             Compressed="yes" 
-             InstallScope="perUser" />
-
+  <Product Id="*" Name="USEPA Simulation Plug-Ins - x86" Language="1033" Version="1.0.0.0" Manufacturer="US Environmental Protection Agency" UpgradeCode="bb63d463-359b-4c0f-b1b5-709a9d2aafe7">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-    
-    <Media Id='1' 
-           Cabinet='product.cab' 
-           EmbedCab='yes'/>
+    <Media Id='1' Cabinet='product.cab' EmbedCab='yes'/>
 
-    <Feature Id="ProductFeature" 
-             Title="USEPASimulationPlugInsSetup" 
-             Level="1">
+    <Feature Id="ProductFeature" Title="USEPA Simulation Plug Ins - x86" Level="1">
       <ComponentGroupRef Id="ProductComponents" />
     </Feature>
-    
+
     <Icon
       Id="usepaIcons"
       SourceFile="$(var.USEPA Simulation PlugIns.TargetPath)"
       />
-    
     <Property Id="ARPPRODUCTICON" Value="usepaIcons" />
-    
   </Product>
 
   <Fragment>
@@ -49,20 +30,32 @@
       <!-- <Component Id="ProductComponent"> -->
       <!-- TODO: Insert files, registry keys, and other resources here. -->
       <!-- </Component> -->
-      <Component Id="ProductComponent" Guid = "83291205-4280-44B4-8724-5F9952BEF6F0">
+
+      <Component Id="ProductComponent" Guid = "A6426CF5-A5B8-43A3-9448-44C5D589D1F6">
         <!-- TODO: Insert files, registry keys, and other resources here. -->
         <!--
         <File Source="$(var.USEPA Simulation PlugIns.TargetPath)" />
         -->
         <RemoveFolder Id="ProgramFilesFolder" On="uninstall"/>
-
+        <!--
+        <RegistryValue Root="HKCR" Key="USEPA\USEPASimulationPlugIns" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+  <Fragment>
+    <DirectoryRef Id="TARGETDIR">
+      <Directory Id="dir39B22699688E51DCD8DCBB99A47E835B" Name="Debug" />
+    </DirectoryRef>
+  </Fragment>
+  <Fragment>
+    <DirectoryRef Id="dir39B22699688E51DCD8DCBB99A47E835B">
+      <Component Id="cmp3D7352F2D89FF50CFD9CD05EBAAED71D" Guid="826ECA9D-4D30-4442-AA4F-1565BC1B4FC8">
+  -->
         <!--
         <Class Id="{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}" />
         -->
-         <!--<TypeLib Id="{DF8AB7B3-95E9-4315-89EB-9F2B92912F6E}" Description="USEPA_Simulation_PlugIns"
+        <!--<TypeLib Id="{DF8AB7B3-95E9-4315-89EB-9F2B92912F6E}" Description="USEPA_Simulation_PlugIns"
          HelpDirectory="dir39B22699688E51DCD8DCBB99A47E835B"  Language="0" MajorVersion="1" MinorVersion="0">-->
-        
-        <!-- Harvested using Heat. -->
         <Class Id="{0D5CA7D8-6574-4C7B-9B5F-320AA8375A3C}" Context="InprocServer32" Description="USEPA_Simulation_PlugIns.CapeTimeOutException" ThreadingModel="both" ForeignServer="mscoree.dll">
           <ProgId Id="USEPA_Simulation_PlugIns.CapeTimeOutException" Description="USEPA_Simulation_PlugIns.CapeTimeOutException" />
         </Class>
@@ -126,7 +119,7 @@
         <Class Id="{F617AFEA-0EEE-4395-8C82-288BF8F2A136}" Context="InprocServer32" Description="USEPA_Simulation_PlugIns.CapeSolvingErrorException" ThreadingModel="both" ForeignServer="mscoree.dll">
           <ProgId Id="USEPA_Simulation_PlugIns.CapeSolvingErrorException" Description="USEPA_Simulation_PlugIns.CapeSolvingErrorException" />
         </Class>
-        <File Id="MyAssemblyDll" KeyPath="yes" Source="$(var.USEPA Simulation PlugIns.TargetPath)">
+        <File Id="fil04EA71F521AD1EC689F6BFC074FE56B8" KeyPath="yes" Source="$(var.USEPA Simulation PlugIns.TargetPath)">
           <TypeLib Id="{DF8AB7B3-95E9-4315-89EB-9F2B92912F6E}" Description="USEPA_Simulation_PlugIns" Language="0" MajorVersion="1" MinorVersion="0">
             <Interface Id="{A84D8708-81AB-3E34-AC5F-FF922EE2023E}" Name="_ComponentNameChangedHandler" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
             <Interface Id="{ACB61733-AC32-326A-8B5D-136955036279}" Name="_ComponentDescriptionChangedHandler" ProxyStubClassId32="{00020424-0000-0000-C000-000000000046}" />
@@ -145,220 +138,222 @@
         <RegistryValue Root="HKCR" Key="CLSID\{0D5CA7D8-6574-4C7B-9B5F-320AA8375A3C}\InprocServer32\1.0.0.0" Name="Class" Value="USEPA_Simulation_PlugIns.CapeTimeOutException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{0D5CA7D8-6574-4C7B-9B5F-320AA8375A3C}\InprocServer32\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{0D5CA7D8-6574-4C7B-9B5F-320AA8375A3C}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{0D5CA7D8-6574-4C7B-9B5F-320AA8375A3C}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{0D5CA7D8-6574-4C7B-9B5F-320AA8375A3C}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{0D5CA7D8-6574-4C7B-9B5F-320AA8375A3C}\InprocServer32" Name="Class" Value="USEPA_Simulation_PlugIns.CapeTimeOutException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{0D5CA7D8-6574-4C7B-9B5F-320AA8375A3C}\InprocServer32" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{0D5CA7D8-6574-4C7B-9B5F-320AA8375A3C}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{0D5CA7D8-6574-4C7B-9B5F-320AA8375A3C}\InprocServer32" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{0D5CA7D8-6574-4C7B-9B5F-320AA8375A3C}\InprocServer32" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{1056A260-A996-4A1E-8BAE-9476D643282B}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{1056A260-A996-4A1E-8BAE-9476D643282B}\InprocServer32\1.0.0.0" Name="Class" Value="USEPA_Simulation_PlugIns.CapeNoMemoryException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{1056A260-A996-4A1E-8BAE-9476D643282B}\InprocServer32\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{1056A260-A996-4A1E-8BAE-9476D643282B}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{1056A260-A996-4A1E-8BAE-9476D643282B}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{1056A260-A996-4A1E-8BAE-9476D643282B}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{1056A260-A996-4A1E-8BAE-9476D643282B}\InprocServer32" Name="Class" Value="USEPA_Simulation_PlugIns.CapeNoMemoryException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{1056A260-A996-4A1E-8BAE-9476D643282B}\InprocServer32" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{1056A260-A996-4A1E-8BAE-9476D643282B}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{1056A260-A996-4A1E-8BAE-9476D643282B}\InprocServer32" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{1056A260-A996-4A1E-8BAE-9476D643282B}\InprocServer32" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{16049506-E086-4BAF-9905-9ED13D50D0E3}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{16049506-E086-4BAF-9905-9ED13D50D0E3}\InprocServer32\1.0.0.0" Name="Class" Value="USEPA_Simulation_PlugIns.CapeUnexpectedException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{16049506-E086-4BAF-9905-9ED13D50D0E3}\InprocServer32\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{16049506-E086-4BAF-9905-9ED13D50D0E3}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{16049506-E086-4BAF-9905-9ED13D50D0E3}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{16049506-E086-4BAF-9905-9ED13D50D0E3}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{16049506-E086-4BAF-9905-9ED13D50D0E3}\InprocServer32" Name="Class" Value="USEPA_Simulation_PlugIns.CapeUnexpectedException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{16049506-E086-4BAF-9905-9ED13D50D0E3}\InprocServer32" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{16049506-E086-4BAF-9905-9ED13D50D0E3}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{16049506-E086-4BAF-9905-9ED13D50D0E3}\InprocServer32" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{16049506-E086-4BAF-9905-9ED13D50D0E3}\InprocServer32" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{1D2488A6-C428-4E38-AFA6-04F2107172DA}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{1D2488A6-C428-4E38-AFA6-04F2107172DA}\InprocServer32\1.0.0.0" Name="Class" Value="USEPA_Simulation_PlugIns.CapeNoImplException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{1D2488A6-C428-4E38-AFA6-04F2107172DA}\InprocServer32\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{1D2488A6-C428-4E38-AFA6-04F2107172DA}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{1D2488A6-C428-4E38-AFA6-04F2107172DA}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{1D2488A6-C428-4E38-AFA6-04F2107172DA}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{1D2488A6-C428-4E38-AFA6-04F2107172DA}\InprocServer32" Name="Class" Value="USEPA_Simulation_PlugIns.CapeNoImplException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{1D2488A6-C428-4E38-AFA6-04F2107172DA}\InprocServer32" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{1D2488A6-C428-4E38-AFA6-04F2107172DA}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{1D2488A6-C428-4E38-AFA6-04F2107172DA}\InprocServer32" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{1D2488A6-C428-4E38-AFA6-04F2107172DA}\InprocServer32" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{3044EA08-F054-4315-B67B-4E3CD2CF0B1E}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{3044EA08-F054-4315-B67B-4E3CD2CF0B1E}\InprocServer32\1.0.0.0" Name="Class" Value="USEPA_Simulation_PlugIns.CapeHessianInfoNotAvailableException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{3044EA08-F054-4315-B67B-4E3CD2CF0B1E}\InprocServer32\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{3044EA08-F054-4315-B67B-4E3CD2CF0B1E}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{3044EA08-F054-4315-B67B-4E3CD2CF0B1E}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{3044EA08-F054-4315-B67B-4E3CD2CF0B1E}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{3044EA08-F054-4315-B67B-4E3CD2CF0B1E}\InprocServer32" Name="Class" Value="USEPA_Simulation_PlugIns.CapeHessianInfoNotAvailableException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{3044EA08-F054-4315-B67B-4E3CD2CF0B1E}\InprocServer32" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{3044EA08-F054-4315-B67B-4E3CD2CF0B1E}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{3044EA08-F054-4315-B67B-4E3CD2CF0B1E}\InprocServer32" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{3044EA08-F054-4315-B67B-4E3CD2CF0B1E}\InprocServer32" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{3237C6F8-3D46-47EE-B25F-52485A5253D8}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{3237C6F8-3D46-47EE-B25F-52485A5253D8}\InprocServer32\1.0.0.0" Name="Class" Value="USEPA_Simulation_PlugIns.CapePersistenceException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{3237C6F8-3D46-47EE-B25F-52485A5253D8}\InprocServer32\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{3237C6F8-3D46-47EE-B25F-52485A5253D8}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{3237C6F8-3D46-47EE-B25F-52485A5253D8}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{3237C6F8-3D46-47EE-B25F-52485A5253D8}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{3237C6F8-3D46-47EE-B25F-52485A5253D8}\InprocServer32" Name="Class" Value="USEPA_Simulation_PlugIns.CapePersistenceException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{3237C6F8-3D46-47EE-B25F-52485A5253D8}\InprocServer32" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{3237C6F8-3D46-47EE-B25F-52485A5253D8}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{3237C6F8-3D46-47EE-B25F-52485A5253D8}\InprocServer32" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{3237C6F8-3D46-47EE-B25F-52485A5253D8}\InprocServer32" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{42B785A7-2EDD-4808-AC43-9E6E96373616}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{42B785A7-2EDD-4808-AC43-9E6E96373616}\InprocServer32\1.0.0.0" Name="Class" Value="USEPA_Simulation_PlugIns.CapeOutOfResourcesException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{42B785A7-2EDD-4808-AC43-9E6E96373616}\InprocServer32\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{42B785A7-2EDD-4808-AC43-9E6E96373616}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{42B785A7-2EDD-4808-AC43-9E6E96373616}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{42B785A7-2EDD-4808-AC43-9E6E96373616}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{42B785A7-2EDD-4808-AC43-9E6E96373616}\InprocServer32" Name="Class" Value="USEPA_Simulation_PlugIns.CapeOutOfResourcesException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{42B785A7-2EDD-4808-AC43-9E6E96373616}\InprocServer32" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{42B785A7-2EDD-4808-AC43-9E6E96373616}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{42B785A7-2EDD-4808-AC43-9E6E96373616}\InprocServer32" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{42B785A7-2EDD-4808-AC43-9E6E96373616}\InprocServer32" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{45843244-ECC9-495D-ADC3-BF9980A083EB}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{45843244-ECC9-495D-ADC3-BF9980A083EB}\InprocServer32\1.0.0.0" Name="Class" Value="USEPA_Simulation_PlugIns.CapeIllegalAccessException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{45843244-ECC9-495D-ADC3-BF9980A083EB}\InprocServer32\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{45843244-ECC9-495D-ADC3-BF9980A083EB}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{45843244-ECC9-495D-ADC3-BF9980A083EB}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{45843244-ECC9-495D-ADC3-BF9980A083EB}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{45843244-ECC9-495D-ADC3-BF9980A083EB}\InprocServer32" Name="Class" Value="USEPA_Simulation_PlugIns.CapeIllegalAccessException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{45843244-ECC9-495D-ADC3-BF9980A083EB}\InprocServer32" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{45843244-ECC9-495D-ADC3-BF9980A083EB}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{45843244-ECC9-495D-ADC3-BF9980A083EB}\InprocServer32" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{45843244-ECC9-495D-ADC3-BF9980A083EB}\InprocServer32" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{53551E7C-ECB2-4894-B71A-CCD1E7D40995}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{53551E7C-ECB2-4894-B71A-CCD1E7D40995}\InprocServer32\1.0.0.0" Name="Class" Value="USEPA_Simulation_PlugIns.CapeDataException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{53551E7C-ECB2-4894-B71A-CCD1E7D40995}\InprocServer32\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{53551E7C-ECB2-4894-B71A-CCD1E7D40995}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{53551E7C-ECB2-4894-B71A-CCD1E7D40995}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{53551E7C-ECB2-4894-B71A-CCD1E7D40995}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{53551E7C-ECB2-4894-B71A-CCD1E7D40995}\InprocServer32" Name="Class" Value="USEPA_Simulation_PlugIns.CapeDataException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{53551E7C-ECB2-4894-B71A-CCD1E7D40995}\InprocServer32" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{53551E7C-ECB2-4894-B71A-CCD1E7D40995}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{53551E7C-ECB2-4894-B71A-CCD1E7D40995}\InprocServer32" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{53551E7C-ECB2-4894-B71A-CCD1E7D40995}\InprocServer32" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{5BA36B8F-6187-4E5E-B263-0924365C9A81}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{5BA36B8F-6187-4E5E-B263-0924365C9A81}\InprocServer32\1.0.0.0" Name="Class" Value="USEPA_Simulation_PlugIns.CapeThrmPropertyNotAvailableException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{5BA36B8F-6187-4E5E-B263-0924365C9A81}\InprocServer32\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{5BA36B8F-6187-4E5E-B263-0924365C9A81}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{5BA36B8F-6187-4E5E-B263-0924365C9A81}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{5BA36B8F-6187-4E5E-B263-0924365C9A81}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{5BA36B8F-6187-4E5E-B263-0924365C9A81}\InprocServer32" Name="Class" Value="USEPA_Simulation_PlugIns.CapeThrmPropertyNotAvailableException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{5BA36B8F-6187-4E5E-B263-0924365C9A81}\InprocServer32" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{5BA36B8F-6187-4E5E-B263-0924365C9A81}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{5BA36B8F-6187-4E5E-B263-0924365C9A81}\InprocServer32" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{5BA36B8F-6187-4E5E-B263-0924365C9A81}\InprocServer32" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{5E6B74A2-D603-4E90-A92F-608E3F1CD39D}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{5E6B74A2-D603-4E90-A92F-608E3F1CD39D}\InprocServer32\1.0.0.0" Name="Class" Value="USEPA_Simulation_PlugIns.CapeLimitedImplException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{5E6B74A2-D603-4E90-A92F-608E3F1CD39D}\InprocServer32\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{5E6B74A2-D603-4E90-A92F-608E3F1CD39D}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{5E6B74A2-D603-4E90-A92F-608E3F1CD39D}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{5E6B74A2-D603-4E90-A92F-608E3F1CD39D}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{5E6B74A2-D603-4E90-A92F-608E3F1CD39D}\InprocServer32" Name="Class" Value="USEPA_Simulation_PlugIns.CapeLimitedImplException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{5E6B74A2-D603-4E90-A92F-608E3F1CD39D}\InprocServer32" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{5E6B74A2-D603-4E90-A92F-608E3F1CD39D}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{5E6B74A2-D603-4E90-A92F-608E3F1CD39D}\InprocServer32" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{5E6B74A2-D603-4E90-A92F-608E3F1CD39D}\InprocServer32" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{64A1B36C-106B-4D05-B585-D176CD4DD1DB}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{64A1B36C-106B-4D05-B585-D176CD4DD1DB}\InprocServer32\1.0.0.0" Name="Class" Value="USEPA_Simulation_PlugIns.ParameterCollection" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{64A1B36C-106B-4D05-B585-D176CD4DD1DB}\InprocServer32\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{64A1B36C-106B-4D05-B585-D176CD4DD1DB}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{64A1B36C-106B-4D05-B585-D176CD4DD1DB}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{64A1B36C-106B-4D05-B585-D176CD4DD1DB}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{64A1B36C-106B-4D05-B585-D176CD4DD1DB}\InprocServer32" Name="Class" Value="USEPA_Simulation_PlugIns.ParameterCollection" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{64A1B36C-106B-4D05-B585-D176CD4DD1DB}\InprocServer32" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{64A1B36C-106B-4D05-B585-D176CD4DD1DB}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{64A1B36C-106B-4D05-B585-D176CD4DD1DB}\InprocServer32" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{64A1B36C-106B-4D05-B585-D176CD4DD1DB}\InprocServer32" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{7828A87E-582D-4947-9E8F-4F56725B6D75}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{7828A87E-582D-4947-9E8F-4F56725B6D75}\InprocServer32\1.0.0.0" Name="Class" Value="USEPA_Simulation_PlugIns.CapeImplementationException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{7828A87E-582D-4947-9E8F-4F56725B6D75}\InprocServer32\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{7828A87E-582D-4947-9E8F-4F56725B6D75}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{7828A87E-582D-4947-9E8F-4F56725B6D75}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{7828A87E-582D-4947-9E8F-4F56725B6D75}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{7828A87E-582D-4947-9E8F-4F56725B6D75}\InprocServer32" Name="Class" Value="USEPA_Simulation_PlugIns.CapeImplementationException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{7828A87E-582D-4947-9E8F-4F56725B6D75}\InprocServer32" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{7828A87E-582D-4947-9E8F-4F56725B6D75}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{7828A87E-582D-4947-9E8F-4F56725B6D75}\InprocServer32" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{7828A87E-582D-4947-9E8F-4F56725B6D75}\InprocServer32" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{85CB2D40-48F6-4C33-BF0C-79CB00684440}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{85CB2D40-48F6-4C33-BF0C-79CB00684440}\InprocServer32\1.0.0.0" Name="Class" Value="USEPA_Simulation_PlugIns.CapePersistenceSystemErrorException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{85CB2D40-48F6-4C33-BF0C-79CB00684440}\InprocServer32\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{85CB2D40-48F6-4C33-BF0C-79CB00684440}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{85CB2D40-48F6-4C33-BF0C-79CB00684440}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{85CB2D40-48F6-4C33-BF0C-79CB00684440}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{85CB2D40-48F6-4C33-BF0C-79CB00684440}\InprocServer32" Name="Class" Value="USEPA_Simulation_PlugIns.CapePersistenceSystemErrorException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{85CB2D40-48F6-4C33-BF0C-79CB00684440}\InprocServer32" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{85CB2D40-48F6-4C33-BF0C-79CB00684440}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{85CB2D40-48F6-4C33-BF0C-79CB00684440}\InprocServer32" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{85CB2D40-48F6-4C33-BF0C-79CB00684440}\InprocServer32" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\InprocServer32\1.0.0.0" Name="Class" Value="USEPA_Simulation_PlugIns.WARPlugIn" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\InprocServer32\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\InprocServer32" Name="Class" Value="USEPA_Simulation_PlugIns.WARPlugIn" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\InprocServer32" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\InprocServer32" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\InprocServer32" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{9D416BF5-B9E3-429A-B13A-222EE85A92A7}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{9D416BF5-B9E3-429A-B13A-222EE85A92A7}\InprocServer32\1.0.0.0" Name="Class" Value="USEPA_Simulation_PlugIns.CapeComputationException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{9D416BF5-B9E3-429A-B13A-222EE85A92A7}\InprocServer32\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{9D416BF5-B9E3-429A-B13A-222EE85A92A7}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{9D416BF5-B9E3-429A-B13A-222EE85A92A7}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{9D416BF5-B9E3-429A-B13A-222EE85A92A7}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{9D416BF5-B9E3-429A-B13A-222EE85A92A7}\InprocServer32" Name="Class" Value="USEPA_Simulation_PlugIns.CapeComputationException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{9D416BF5-B9E3-429A-B13A-222EE85A92A7}\InprocServer32" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{9D416BF5-B9E3-429A-B13A-222EE85A92A7}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{9D416BF5-B9E3-429A-B13A-222EE85A92A7}\InprocServer32" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{9D416BF5-B9E3-429A-B13A-222EE85A92A7}\InprocServer32" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{A119DE0B-C11E-4A14-BA5E-9A2D20B15578}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{A119DE0B-C11E-4A14-BA5E-9A2D20B15578}\InprocServer32\1.0.0.0" Name="Class" Value="USEPA_Simulation_PlugIns.CapePersistenceOverflowException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{A119DE0B-C11E-4A14-BA5E-9A2D20B15578}\InprocServer32\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{A119DE0B-C11E-4A14-BA5E-9A2D20B15578}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{A119DE0B-C11E-4A14-BA5E-9A2D20B15578}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{A119DE0B-C11E-4A14-BA5E-9A2D20B15578}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{A119DE0B-C11E-4A14-BA5E-9A2D20B15578}\InprocServer32" Name="Class" Value="USEPA_Simulation_PlugIns.CapePersistenceOverflowException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{A119DE0B-C11E-4A14-BA5E-9A2D20B15578}\InprocServer32" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{A119DE0B-C11E-4A14-BA5E-9A2D20B15578}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{A119DE0B-C11E-4A14-BA5E-9A2D20B15578}\InprocServer32" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{A119DE0B-C11E-4A14-BA5E-9A2D20B15578}\InprocServer32" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{C0B943FE-FB8F-46B6-A622-54D30027D18B}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{C0B943FE-FB8F-46B6-A622-54D30027D18B}\InprocServer32\1.0.0.0" Name="Class" Value="USEPA_Simulation_PlugIns.CapeInvalidOperationException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{C0B943FE-FB8F-46B6-A622-54D30027D18B}\InprocServer32\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{C0B943FE-FB8F-46B6-A622-54D30027D18B}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{C0B943FE-FB8F-46B6-A622-54D30027D18B}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{C0B943FE-FB8F-46B6-A622-54D30027D18B}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{C0B943FE-FB8F-46B6-A622-54D30027D18B}\InprocServer32" Name="Class" Value="USEPA_Simulation_PlugIns.CapeInvalidOperationException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{C0B943FE-FB8F-46B6-A622-54D30027D18B}\InprocServer32" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{C0B943FE-FB8F-46B6-A622-54D30027D18B}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{C0B943FE-FB8F-46B6-A622-54D30027D18B}\InprocServer32" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{C0B943FE-FB8F-46B6-A622-54D30027D18B}\InprocServer32" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{CF4C55E9-6B0A-4248-9A33-B8134EA393F6}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{CF4C55E9-6B0A-4248-9A33-B8134EA393F6}\InprocServer32\1.0.0.0" Name="Class" Value="USEPA_Simulation_PlugIns.CapeLicenceErrorException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{CF4C55E9-6B0A-4248-9A33-B8134EA393F6}\InprocServer32\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{CF4C55E9-6B0A-4248-9A33-B8134EA393F6}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{CF4C55E9-6B0A-4248-9A33-B8134EA393F6}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{CF4C55E9-6B0A-4248-9A33-B8134EA393F6}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{CF4C55E9-6B0A-4248-9A33-B8134EA393F6}\InprocServer32" Name="Class" Value="USEPA_Simulation_PlugIns.CapeLicenceErrorException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{CF4C55E9-6B0A-4248-9A33-B8134EA393F6}\InprocServer32" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{CF4C55E9-6B0A-4248-9A33-B8134EA393F6}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{CF4C55E9-6B0A-4248-9A33-B8134EA393F6}\InprocServer32" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{CF4C55E9-6B0A-4248-9A33-B8134EA393F6}\InprocServer32" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{E407595C-6D1C-4B8C-A29D-DB0BE73EFDDA}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{E407595C-6D1C-4B8C-A29D-DB0BE73EFDDA}\InprocServer32\1.0.0.0" Name="Class" Value="USEPA_Simulation_PlugIns.CapeFailedInitialisationException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{E407595C-6D1C-4B8C-A29D-DB0BE73EFDDA}\InprocServer32\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{E407595C-6D1C-4B8C-A29D-DB0BE73EFDDA}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{E407595C-6D1C-4B8C-A29D-DB0BE73EFDDA}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{E407595C-6D1C-4B8C-A29D-DB0BE73EFDDA}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{E407595C-6D1C-4B8C-A29D-DB0BE73EFDDA}\InprocServer32" Name="Class" Value="USEPA_Simulation_PlugIns.CapeFailedInitialisationException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{E407595C-6D1C-4B8C-A29D-DB0BE73EFDDA}\InprocServer32" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{E407595C-6D1C-4B8C-A29D-DB0BE73EFDDA}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{E407595C-6D1C-4B8C-A29D-DB0BE73EFDDA}\InprocServer32" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{E407595C-6D1C-4B8C-A29D-DB0BE73EFDDA}\InprocServer32" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{F617AFEA-0EEE-4395-8C82-288BF8F2A136}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{F617AFEA-0EEE-4395-8C82-288BF8F2A136}\InprocServer32\1.0.0.0" Name="Class" Value="USEPA_Simulation_PlugIns.CapeSolvingErrorException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{F617AFEA-0EEE-4395-8C82-288BF8F2A136}\InprocServer32\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{F617AFEA-0EEE-4395-8C82-288BF8F2A136}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{F617AFEA-0EEE-4395-8C82-288BF8F2A136}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{F617AFEA-0EEE-4395-8C82-288BF8F2A136}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{F617AFEA-0EEE-4395-8C82-288BF8F2A136}\InprocServer32" Name="Class" Value="USEPA_Simulation_PlugIns.CapeSolvingErrorException" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{F617AFEA-0EEE-4395-8C82-288BF8F2A136}\InprocServer32" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{F617AFEA-0EEE-4395-8C82-288BF8F2A136}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{F617AFEA-0EEE-4395-8C82-288BF8F2A136}\InprocServer32" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{F617AFEA-0EEE-4395-8C82-288BF8F2A136}\InprocServer32" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="Record\{1962FE7A-AE63-3495-BA8A-C17A8C5B9CA9}\1.0.0.0" Name="Class" Value="CAPEOPEN.eCapePhaseStatus" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="Record\{1962FE7A-AE63-3495-BA8A-C17A8C5B9CA9}\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="Record\{1962FE7A-AE63-3495-BA8A-C17A8C5B9CA9}\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="Record\{1962FE7A-AE63-3495-BA8A-C17A8C5B9CA9}\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="Record\{1962FE7A-AE63-3495-BA8A-C17A8C5B9CA9}\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="Record\{63E9D858-3450-3ABA-8250-F823BB68D361}\1.0.0.0" Name="Class" Value="USEPA_Simulation_PlugIns.CapeErrorInterfaceHR" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="Record\{63E9D858-3450-3ABA-8250-F823BB68D361}\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="Record\{63E9D858-3450-3ABA-8250-F823BB68D361}\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="Record\{63E9D858-3450-3ABA-8250-F823BB68D361}\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="Record\{63E9D858-3450-3ABA-8250-F823BB68D361}\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="Record\{678C0B02-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="Class" Value="CAPEOPEN.CapeParamType" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="Record\{678C0B02-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="Record\{678C0B02-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="Record\{678C0B02-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="Record\{678C0B02-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="Record\{678C0B03-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="Class" Value="CAPEOPEN.CapeParamMode" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="Record\{678C0B03-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="Record\{678C0B03-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="Record\{678C0B03-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="Record\{678C0B03-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="Record\{678C0B04-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="Class" Value="CAPEOPEN.CapeValidationStatus" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="Record\{678C0B04-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="Record\{678C0B04-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="Record\{678C0B04-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="Record\{678C0B04-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="Record\{678C0B05-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="Class" Value="CAPEOPEN.CapePortDirection" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="Record\{678C0B05-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="Record\{678C0B05-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="Record\{678C0B05-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="Record\{678C0B05-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="Record\{678C0B06-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="Class" Value="CAPEOPEN.CapePortType" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="Record\{678C0B06-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="Record\{678C0B06-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="Record\{678C0B06-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="CodeBase" Value="file:///[#MyAssemblyDll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="Record\{678C0B06-7D66-11D2-A67D-00105A42887F}\1.0.0.0" Name="CodeBase" Value="file:///[#fil04EA71F521AD1EC689F6BFC074FE56B8]" Type="string" Action="write" />
       </Component>
+      <!--    </DirectoryRef>
+  -->
     </ComponentGroup>
   </Fragment>
 </Wix>
