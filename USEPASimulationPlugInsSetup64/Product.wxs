@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- See https://stackoverflow.com/questions/500703/how-to-get-wix-to-update-a-previously-installed-version-of-a-program -->
 <!-- GUID created on Feb 28, 2018 for USEPA Simulation Plug-ins. Please change if copies and pasted into a new installer. -->
-<?define UpgradeCode="5ED66FE4-933F-4472-8D17-E60514E8F349"?>
+<?define UpgradeCode="F199614B-5368-485B-8372-76FD9A16E456"?>
 
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="USEPASimulationPlugInsSetup" 
-           Language="1033" 
-           Version="1.0.2.1" 
-           Manufacturer="US Environmental Protection Agency" 
+  <Product Id="*" Name="USEPASimulationPlugInsSetup64"
+           Language="1033"
+           Version="1.0.2.1"
+           Manufacturer="US Environmental Protection Agency"
            UpgradeCode="$(var.UpgradeCode)">
-    
-    <Package InstallerVersion="200" 
-             Compressed="yes" 
+
+    <Package InstallerVersion="200"
+             Compressed="yes"
              InstallScope="perUser" />
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-    
-    <Media Id='1' 
-           Cabinet='product.cab' 
+
+    <Media Id='1'
+           Cabinet='product.cab'
            EmbedCab='yes'/>
 
-    <Feature Id="ProductFeature" 
-             Title="USEPASimulationPlugInsSetup" 
+    <Feature Id="ProductFeature"
+             Title="USEPASimulationPlugInsSetup"
              Level="1">
       <ComponentGroupRef Id="ProductComponents" />
     </Feature>
-    
+
     <Icon
       Id="usepaIcons"
       SourceFile="$(var.USEPA Simulation PlugIns.TargetPath)"
       />
-    
+
     <Property Id="ARPPRODUCTICON" Value="usepaIcons" />
-    
+
   </Product>
 
   <Fragment>
     <Directory Id="TARGETDIR" Name="SourceDir">
-      <Directory Id="ProgramFilesFolder">
+      <Directory Id="ProgramFilesFolder64">
         <Directory Id="INSTALLFOLDER" Name="USEPASimulationPlugInsSetup" />
       </Directory>
     </Directory>
@@ -49,7 +49,7 @@
       <!-- <Component Id="ProductComponent"> -->
       <!-- TODO: Insert files, registry keys, and other resources here. -->
       <!-- </Component> -->
-      <Component Id="ProductComponent" Guid = "83291205-4280-44B4-8724-5F9952BEF6F0">
+      <Component Id="ProductComponent" Guid = "A6426CF5-A5B8-43A3-9448-44C5D589D1F6" Win64="yes">
         <!-- TODO: Insert files, registry keys, and other resources here. -->
         <!--
         <File Source="$(var.USEPA Simulation PlugIns.TargetPath)" />
@@ -59,9 +59,9 @@
         <!--
         <Class Id="{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}" />
         -->
-         <!--<TypeLib Id="{DF8AB7B3-95E9-4315-89EB-9F2B92912F6E}" Description="USEPA_Simulation_PlugIns"
+        <!--<TypeLib Id="{DF8AB7B3-95E9-4315-89EB-9F2B92912F6E}" Description="USEPA_Simulation_PlugIns"
          HelpDirectory="dir39B22699688E51DCD8DCBB99A47E835B"  Language="0" MajorVersion="1" MinorVersion="0">-->
-        
+
         <!-- Harvested using Heat. -->
         <Class Id="{0D5CA7D8-6574-4C7B-9B5F-320AA8375A3C}" Context="InprocServer32" Description="USEPA_Simulation_PlugIns.CapeTimeOutException" ThreadingModel="both" ForeignServer="mscoree.dll">
           <ProgId Id="USEPA_Simulation_PlugIns.CapeTimeOutException" Description="USEPA_Simulation_PlugIns.CapeTimeOutException" />
