@@ -15,8 +15,8 @@ namespace USEPA_Simulation_PlugIns
     /// monitoring Object (Category GUID of 7BA1AF89-B2E4-493d-BD80-2970BF4CBE99).
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisible(true)]
-    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    //[System.Runtime.InteropServices.ComVisible(true)]
+    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public abstract class CapeObjectBase : CapeIdentification,
         ICapeUtilities,
         ICapeUtilitiesCOM,
@@ -358,7 +358,7 @@ namespace USEPA_Simulation_PlugIns
         [System.Runtime.InteropServices.ComRegisterFunction()]
         public static void RegisterFunction(Type t)
         {
-            RegistrationHelper(Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.ClassesRoot, Microsoft.Win32.RegistryView.Registry32), t);
+            //RegistrationHelper(Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.ClassesRoot, Microsoft.Win32.RegistryView.Registry32), t);
             RegistrationHelper(Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.ClassesRoot, Microsoft.Win32.RegistryView.Registry64), t);
         }
 
@@ -418,7 +418,7 @@ namespace USEPA_Simulation_PlugIns
         [System.Runtime.InteropServices.ComUnregisterFunction()]
         public static void UnregisterFunction(Type t)
         {
-            UnregisterHelper(Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.ClassesRoot, Microsoft.Win32.RegistryView.Registry32), t);
+            //UnregisterHelper(Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.ClassesRoot, Microsoft.Win32.RegistryView.Registry32), t);
             UnregisterHelper(Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.ClassesRoot, Microsoft.Win32.RegistryView.Registry64), t);
         }
 

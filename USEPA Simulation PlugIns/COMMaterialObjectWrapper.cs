@@ -22,7 +22,7 @@ namespace USEPA_Simulation_PlugIns
     /// </para>
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    //[System.Runtime.InteropServices.ComVisibleAttribute(true)]
     [System.Runtime.InteropServices.GuidAttribute("5A65B4B2-2FDD-4208-813D-7CC527FB91BD")]
     [System.ComponentModel.DescriptionAttribute("ICapeThermoMaterialObject Interface")]
     class COMMaterialObjectWrapper : CapeObjectBase,

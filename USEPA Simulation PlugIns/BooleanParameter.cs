@@ -16,8 +16,8 @@ namespace USEPA_Simulation_PlugIns
     /// <para>This interface is not a part of the CAPE-OPEN specifications. This interface and its implementation is 
     /// provided to give COM-based developers similar functionality as .NET-based developers.</para>
     /// </remarks>
-    [System.Runtime.InteropServices.InterfaceType(System.Runtime.InteropServices.ComInterfaceType.InterfaceIsIDispatch)]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    //[System.Runtime.InteropServices.InterfaceType(System.Runtime.InteropServices.ComInterfaceType.InterfaceIsIDispatch)]
+    //[System.Runtime.InteropServices.ComVisibleAttribute(true)]
     [System.Runtime.InteropServices.GuidAttribute("07D17ED3-B25A-48EA-8261-5ED2D076ABDD")]
     [System.ComponentModel.DescriptionAttribute("CapeRealParameterEvents Interface")]
     interface ICapeBooleanParameterSpecEvents
@@ -60,8 +60,8 @@ namespace USEPA_Simulation_PlugIns
     /// Boolean-Valued parameter for use in the CAPE-OPEN parameter collection.
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComSourceInterfaces(typeof(ICapeBooleanParameterSpecEvents))]
-    [System.Runtime.InteropServices.ComVisible(true)]
+    //[System.Runtime.InteropServices.ComSourceInterfaces(typeof(ICapeBooleanParameterSpecEvents))]
+    //[System.Runtime.InteropServices.ComVisible(true)]
     [System.Runtime.InteropServices.Guid("8B8BC504-EEB5-4a13-B016-9614543E4536")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class BooleanParameter : CapeParameter,
@@ -295,8 +295,8 @@ namespace USEPA_Simulation_PlugIns
     /// Boolean-Valued parameter for use in the CAPE-OPEN parameter collection.
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComSourceInterfaces(typeof(ICapeBooleanParameterSpecEvents))]
-    [System.Runtime.InteropServices.ComVisible(true)]
+    //[System.Runtime.InteropServices.ComSourceInterfaces(typeof(ICapeBooleanParameterSpecEvents))]
+    //[System.Runtime.InteropServices.ComVisible(true)]
     [System.Runtime.InteropServices.Guid("A6751A39-8A2C-4AFC-AD57-6395FFE0A7FE")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     class BooleanParameterWrapper : CapeParameter,

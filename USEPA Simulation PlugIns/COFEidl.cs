@@ -89,7 +89,7 @@ namespace USEPA_Simulation_PlugIns
     /// Interface implemented by COFE Stream object.
     /// </remarks>
 	[System.Runtime.InteropServices.ComImport()]
-	[System.Runtime.InteropServices.ComVisibleAttribute(true)]
+	//[System.Runtime.InteropServices.ComVisibleAttribute(true)]
 	[System.Runtime.InteropServices.GuidAttribute("B2A15C45-D878-4E56-A19A-DED6A6AD6F91")]
 	[System.ComponentModel.DescriptionAttribute("ICOFEStream Interface")]
 	public interface ICOFEStream 
@@ -149,7 +149,7 @@ namespace USEPA_Simulation_PlugIns
     /// Interface implemented by COFE Material object.
     /// </remarks>
     [System.Runtime.InteropServices.ComImport()]
-	[System.Runtime.InteropServices.ComVisibleAttribute(true)]
+	//[System.Runtime.InteropServices.ComVisibleAttribute(true)]
 	[System.Runtime.InteropServices.GuidAttribute("2BFFCBD3-7DAB-439D-9E25-FBECC8146BE8")]
 	[System.ComponentModel.DescriptionAttribute("ICOFEMaterial Interface")]
 	public interface ICOFEMaterial
@@ -206,7 +206,7 @@ namespace USEPA_Simulation_PlugIns
     //};
 
     [System.Runtime.InteropServices.ComImport()]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    //[System.Runtime.InteropServices.ComVisibleAttribute(true)]
     [System.Runtime.InteropServices.GuidAttribute("5F6333E0-434F-4C03-85E2-6EB493EAE846")]
     [System.ComponentModel.DescriptionAttribute("ICOFEIcon Interface")]
     interface ICOFEIcon

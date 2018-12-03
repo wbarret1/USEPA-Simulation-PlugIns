@@ -485,7 +485,7 @@ namespace USEPA_Simulation_PlugIns
     /// <para>Reference document: Identification Common Interface</para>
     /// </remarks>
     [System.Runtime.InteropServices.ComImport()]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    //[System.Runtime.InteropServices.ComVisibleAttribute(true)]
     [System.Runtime.InteropServices.GuidAttribute(COGuids.CapeIdentification_IID)]
     [System.ComponentModel.DescriptionAttribute("CapeIdentification Interface")]
     public interface ICapeIdentification
@@ -581,7 +581,7 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     [System.Runtime.InteropServices.ComSourceInterfaces(typeof(ICapeIdentificationEvents), typeof(System.ComponentModel.INotifyPropertyChanged))]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    //[System.Runtime.InteropServices.ComVisibleAttribute(true)]
     [System.Runtime.InteropServices.GuidAttribute("BF54DF05-924C-49a5-8EBB-733E37C38085")]
     [System.ComponentModel.DescriptionAttribute("CapeIdentification Interface")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
