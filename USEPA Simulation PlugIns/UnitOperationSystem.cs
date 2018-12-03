@@ -112,7 +112,7 @@ namespace USEPA_Simulation_PlugIns
     /// <para>This class provides a list of all
     /// classes Property Packages registered with COM and all .Net-based property packages that are contained in the Global Assembly Cache.</para>
     /// </remarks>
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("3A223DEE-8414-4802-8391-D1B11B276A0F")]
     [System.ComponentModel.DescriptionAttribute("CapeThermoSystem Wrapper")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]

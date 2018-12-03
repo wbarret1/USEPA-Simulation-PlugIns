@@ -33,7 +33,7 @@ namespace USEPA_Simulation_PlugIns
     /// <remarks>
     /// </remarks>
     [System.Runtime.InteropServices.InterfaceType(System.Runtime.InteropServices.ComInterfaceType.InterfaceIsIDispatch)]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("991F95FB-2210-4E44-99B3-4AB793FF46C2")]
     [System.ComponentModel.DescriptionAttribute("CapeRealParameterEvents Interface")]
     interface IOptionParameterSpecEvents
@@ -104,7 +104,7 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     [System.Runtime.InteropServices.ComSourceInterfaces(typeof(IOptionParameterSpecEvents))]
-    [System.Runtime.InteropServices.ComVisible(true)]
+    [System.Runtime.InteropServices.ComVisible(false)]
     [System.Runtime.InteropServices.Guid("8EB0F647-618C-4fcc-A16F-39A9D57EA72E")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class OptionParameter : CapeParameter,
@@ -543,7 +543,7 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     [System.Runtime.InteropServices.ComSourceInterfaces(typeof(IOptionParameterSpecEvents))]
-    [System.Runtime.InteropServices.ComVisible(true)]
+    [System.Runtime.InteropServices.ComVisible(false)]
     [System.Runtime.InteropServices.Guid("70994E8C-179E-40E1-A51B-54A5C0F64A84")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     class OptionParameterWrapper : CapeParameter,

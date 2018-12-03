@@ -40,10 +40,9 @@ namespace USEPA_Simulation_PlugIns
     /// <remarks>
     /// Indicates whether the reaction package is for equilibrium or kinetic type reactions.
     /// </remarks>
-    //[
-    //    System.Runtime.InteropServices.ComVisibleAttribute(true),
-    //    System.Runtime.InteropServices.GuidAttribute("678c0b00-0100-11d2-a67d-00105a42887f")//CapeReactionType_IID),
-    //]
+    [System.Runtime.InteropServices.ComVisible(false)]
+    [System.Runtime.InteropServices.TypeIdentifier()]
+    [System.Runtime.InteropServices.GuidAttribute("678C0B00-0100-11D2-A67D-00105A42887F")]
     public enum CapeReactionType
     {
         /// <summary>
@@ -72,10 +71,9 @@ namespace USEPA_Simulation_PlugIns
     /// <remarks>
     /// Indicates whether the reaction occurs in a homgeneous phase of is a heterogeneous reaction..
     /// </remarks>
-//    [
-//        System.Runtime.InteropServices.ComVisibleAttribute(true),
-//        System.Runtime.InteropServices.GuidAttribute("678c0aff-0100-11d2-a67d-00105a42887f")//CapeReactionRateBasis_IID),
-//    ]
+    [System.Runtime.InteropServices.ComVisible(false)]
+    [System.Runtime.InteropServices.TypeIdentifier()]
+    [System.Runtime.InteropServices.GuidAttribute("678C0AFF-0100-11D2-A67D-00105A42887F")]
     public enum CapeReactionRateBasis
     {
         /// <summary>

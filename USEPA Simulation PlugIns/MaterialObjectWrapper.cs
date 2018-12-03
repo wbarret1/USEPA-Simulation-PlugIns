@@ -8,19 +8,54 @@ namespace USEPA_Simulation_PlugIns
 
 
     /// <summary>
-    /// Status of the phases present in the material object.
+    /// A flag that indicates the desired calculations for the <see cref = "ICapeThermoPropertyRoutine.CalcAndGetLnPhi">ICapeThermoPropertyRoutine.CalcAndGetLnPhi</see> method.
     /// </summary>
-    /// <remarks>All the Phases with a status of Cape_AtEquilibrium have values of 
-    /// temperature, pressure, composition and Phase fraction set that correspond to an 
-    /// equilibrium state, i.e. equal temperature, pressure and fugacities of each 
-    /// Compound. Phases with a Cape_Estimates status have values of temperature, pressure, 
-    /// composition and Phase fraction set in the Material Object. These values are 
-    /// available for use by an Equilibrium Calculator component to initialise an 
-    /// Equilibrium Calculation. The stored values are available but there is no guarantee 
-    /// that they will be used.
+    /// <remarks>
+    /// <para>The quantities actually calculated and returned by this method are 
+    /// controlled by an integer code fFlags. The code is formed by summing contributions 
+    /// for the property and each derivative required using the enumerated constants 
+    /// CapeCalculationCode (defined in the Thermo version 1.1 IDL) shown in the following 
+    /// table. For example, to calculate log fugacity coefficients and their T-derivatives 
+    /// the fFlags argument would be set to CAPE_LOG_FUGACITY_COEFFICIENTS | CAPE_T_DERIVATIVE (bitwise "or' operator).</para>
+    /// <table border="1">
+    /// <tr>
+    /// <th>Calculation Type</th>
+    /// <th>Enumeration Value</th>
+    /// <th>Numerical Value</th>
+    /// </tr>
+    /// <tr>
+    /// <td>no calculation</td>
+    /// <td>CAPE_NO_CALCULATION</td>
+    /// <td>0</td>
+    /// </tr>
+    /// <tr>
+    /// <td>log fugacity coefficients</td>
+    /// <td>CAPE_LOG_FUGACITY_COEFFICIENTS</td>
+    /// <td>1</td>
+    /// </tr>
+    /// <tr>
+    /// <td>T-derivative</td>
+    /// <td>CAPE_T_DERIVATIVE</td>
+    /// <td>2</td>
+    /// </tr>
+    /// <tr>
+    /// <td>P-derivative</td>
+    /// <td>CAPE_P_DERIVATIVE</td>
+    /// <td>4</td>
+    /// </tr>
+    /// <tr>
+    /// <td>mole number derivatives</td>
+    /// <td>CAPE_MOLE_NUMBERS_DERIVATIVES</td>
+    /// <td>8</td>
+    /// </tr>
+    /// </table>	
+    /// <para>If CalcAndGetLnPhi is called with fFlags set to CAPE_NO_CALCULATION no 
+    /// property values are returned. </para>
     /// </remarks>
     [Serializable]
-    public enum CapeFugacityFlag
+    [System.Runtime.InteropServices.ComVisible(false)]
+    [System.Runtime.InteropServices.GuidAttribute("0DABD6AA-4A4A-4AE4-BC19-01243132A629")]
+    public enum CapeCalculationCode
     {
         /// <summary>
         /// No Calculation.
@@ -2899,7 +2934,7 @@ namespace USEPA_Simulation_PlugIns
         void ICapeThermoPropertyRoutine.CalcAndGetLnPhi(String phaseLabel, double temperature,
             double pressure,
             double[] moleNumbers,
-            CapeFugacityFlag fFlags,
+            CapeCalculationCode fFlags,
             ref double[] lnPhi,
             ref double[] lnPhiDT,
             ref double[] lnPhiDP,

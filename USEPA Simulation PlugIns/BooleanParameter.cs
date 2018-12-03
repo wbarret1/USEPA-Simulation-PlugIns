@@ -61,7 +61,7 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     //[System.Runtime.InteropServices.ComSourceInterfaces(typeof(ICapeBooleanParameterSpecEvents))]
-    //[System.Runtime.InteropServices.ComVisible(true)]
+    [System.Runtime.InteropServices.ComVisible(false)]
     [System.Runtime.InteropServices.Guid("8B8BC504-EEB5-4a13-B016-9614543E4536")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class BooleanParameter : CapeParameter,
@@ -296,7 +296,7 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     //[System.Runtime.InteropServices.ComSourceInterfaces(typeof(ICapeBooleanParameterSpecEvents))]
-    //[System.Runtime.InteropServices.ComVisible(true)]
+    [System.Runtime.InteropServices.ComVisible(false)]
     [System.Runtime.InteropServices.Guid("A6751A39-8A2C-4AFC-AD57-6395FFE0A7FE")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     class BooleanParameterWrapper : CapeParameter,

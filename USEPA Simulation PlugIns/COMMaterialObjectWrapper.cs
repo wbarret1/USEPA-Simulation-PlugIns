@@ -2067,21 +2067,21 @@ namespace USEPA_Simulation_PlugIns
             double[] temp2 = null;
             double[] temp3 = null;
             double[] temp4 = null;
-            CapeFugacityFlag flags = CapeFugacityFlag.CAPE_NO_CALCULATION;
+            CapeCalculationCode flags = CapeCalculationCode.CAPE_NO_CALCULATION;
             if (fFlags % 2 == 1)
             {
-                flags = CapeFugacityFlag.CAPE_LOG_FUGACITY_COEFFICIENTS;
+                flags = CapeCalculationCode.CAPE_LOG_FUGACITY_COEFFICIENTS;
                 if (fFlags / 8 == 1)
                 {
-                    flags = flags | CapeFugacityFlag.CAPE_MOLE_NUMBERS_DERIVATIVES;
+                    flags = flags | CapeCalculationCode.CAPE_MOLE_NUMBERS_DERIVATIVES;
                     fFlags = fFlags - 8;
                 }
                 if (fFlags / 4 == 1) 
                 {
-                    flags = flags | CapeFugacityFlag.CAPE_P_DERIVATIVE;
+                    flags = flags | CapeCalculationCode.CAPE_P_DERIVATIVE;
                     fFlags = fFlags - 4;
                 }
-                if (fFlags / 2 == 1) flags = flags | CapeFugacityFlag.CAPE_T_DERIVATIVE;
+                if (fFlags / 2 == 1) flags = flags | CapeCalculationCode.CAPE_T_DERIVATIVE;
             }
             p_IPropertyRoutine.CalcAndGetLnPhi(phaseLabel, temperature, pressure, (double[])moleNumbers, flags, ref temp1, ref temp2, ref temp3, ref temp4);
             lnPhi = temp1;

@@ -28,7 +28,7 @@ namespace USEPA_Simulation_PlugIns
 	/// </remarks>
 	[Serializable]
     [System.Runtime.InteropServices.ComVisibleAttribute(false)]
-    [System.Runtime.InteropServices.GuidAttribute("D1B15843-C0F5-4CB7-B462-E1B80456808E")]
+    [System.Runtime.InteropServices.GuidAttribute("A1B6A49F-3B74-43E2-A919-D6D21413E850")]
     public enum CapeSolutionStatus
     {
 		/// <summary>

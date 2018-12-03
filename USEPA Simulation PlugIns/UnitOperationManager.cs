@@ -31,7 +31,7 @@ namespace USEPA_Simulation_PlugIns
     /// </para>
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisible(true)]
+    [System.Runtime.InteropServices.ComVisible(false)]
     [System.Runtime.InteropServices.Guid("B41DECE0-6C99-4CA4-B0EB-EFADBDCE23E9")]//ICapeThermoMaterialObject_IID)
     [USEPA_Simulation_PlugIns.CapeNameAttribute("UnitOperationWrapper")]
     [USEPA_Simulation_PlugIns.CapeDescriptionAttribute("This class provides access to unit operations based upon .Net-based assembly location rules.")]

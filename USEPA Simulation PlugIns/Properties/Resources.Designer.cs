@@ -59,15 +59,5 @@ namespace USEPA_Simulation_PlugIns.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] GRNS_data_Template_08_2016 {
-            get {
-                object obj = ResourceManager.GetObject("GRNS_data_Template_08_2016", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
     }
 }

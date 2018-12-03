@@ -48,8 +48,8 @@ namespace USEPA_Simulation_PlugIns
     /// </para>
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComSourceInterfaces(typeof(ICapeIdentificationEvents)/*, typeof(ICapeCollectionEvents)*/)]
-    [System.Runtime.InteropServices.ComVisible(true)]
+    //[System.Runtime.InteropServices.ComSourceInterfaces(typeof(ICapeIdentificationEvents)/*, typeof(ICapeCollectionEvents)*/)]
+    [System.Runtime.InteropServices.ComVisible(false)]
     [System.Runtime.InteropServices.Guid("1C5F7CC3-31B4-4d81-829F-3EB5D692F7BD")]//ICapeThermoMaterialObject_IID)
     [System.ComponentModel.Description("")]
     //[System.ComponentModel.TypeConverter(typeof(PortCollectionTypeConverter))]

@@ -48,7 +48,7 @@ namespace USEPA_Simulation_PlugIns
     /// </para>
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisible(true)]
+    [System.Runtime.InteropServices.ComVisible(false)]
     [System.Runtime.InteropServices.ComSourceInterfaces(typeof(ICapeIdentificationEvents), /*typeof(ICapeCollectionEvents),*/ typeof(System.ComponentModel.IBindingList))]
     [System.Runtime.InteropServices.Guid("64A1B36C-106B-4d05-B585-D176CD4DD1DB")]
     [System.ComponentModel.Description("")]

@@ -92,8 +92,8 @@ namespace USEPA_Simulation_PlugIns
     /// Intger-Valued parameter for use in the CAPE-OPEN parameter collection.
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComSourceInterfaces(typeof(ICapeIntegerParameterSpecEvents))]
-    [System.Runtime.InteropServices.ComVisible(true)]
+    //[System.Runtime.InteropServices.ComSourceInterfaces(typeof(ICapeIntegerParameterSpecEvents))]
+    [System.Runtime.InteropServices.ComVisible(false)]
     [System.Runtime.InteropServices.Guid("2C57DC9F-1368-42eb-888F-5BC6ED7DDFA7")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class IntegerParameter : CapeParameter,
@@ -471,7 +471,7 @@ namespace USEPA_Simulation_PlugIns
     /// Integer-Valued parameter for use in the CAPE-OPEN parameter collection.
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisible(true)]
+    [System.Runtime.InteropServices.ComVisible(false)]
     [System.Runtime.InteropServices.ComSourceInterfaces(typeof(ICapeIntegerParameterSpecEvents))]
     [System.Runtime.InteropServices.Guid("EFC01B53-9A6A-4AD9-97BE-3F0294B3BBFB")]//ICapeThermoMaterialObject_IID)
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]

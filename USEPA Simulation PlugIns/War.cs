@@ -5,6 +5,9 @@ using System.Text;
 
 namespace USEPA_Simulation_PlugIns
 {
+
+    // Progid: USEPA_Simulation_PlugIns.WARPlugIn
+
     /// <summary>
     /// Summary for WAR
     /// </summary>
@@ -253,7 +256,7 @@ namespace USEPA_Simulation_PlugIns
 
         ~WARPlugIn()
         {
-            Dispose(false);
+            Dispose();
         }
 
         bool _disposed = false;

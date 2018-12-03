@@ -50,7 +50,7 @@ namespace USEPA_Simulation_PlugIns
     /// <remarks>
     /// </remarks>
     [System.Runtime.InteropServices.InterfaceType(System.Runtime.InteropServices.ComInterfaceType.InterfaceIsIDispatch)]
-    [System.Runtime.InteropServices.ComVisible(true)]
+    [System.Runtime.InteropServices.ComVisible(false)]
     [System.Runtime.InteropServices.GuidAttribute("058B416C-FC61-4E64-802A-19070CB39703")]
     [System.ComponentModel.DescriptionAttribute("CapeRealParameterEvents Interface")]
     interface IRealParameterSpecEvents
@@ -117,7 +117,7 @@ namespace USEPA_Simulation_PlugIns
     /// </summary>
     [Serializable]
     [System.Runtime.InteropServices.ComSourceInterfaces(typeof(IParameterEvents), typeof(IRealParameterSpecEvents))]
-    [System.Runtime.InteropServices.ComVisible(true)]
+    [System.Runtime.InteropServices.ComVisible(false)]
     [System.Runtime.InteropServices.Guid("77E39C43-046B-4b1f-9EE0-AA9EFC55D2EE")]//ICapeThermoMaterialObject_IID)
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     [System.ComponentModel.TypeConverter(typeof(USEPA_Simulation_PlugIns.RealParameterTypeConverter))]
@@ -1101,7 +1101,7 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     [System.Runtime.InteropServices.ComSourceInterfaces(typeof(IRealParameterSpecEvents))]
-    [System.Runtime.InteropServices.ComVisible(true)]
+    [System.Runtime.InteropServices.ComVisible(false)]
     [System.Runtime.InteropServices.Guid("C7095FE4-E61D-4FFF-BA02-013FD38DBAE9")]//ICapeThermoMaterialObject_IID)
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     [System.ComponentModel.TypeConverter(typeof(RealParameterTypeConverter))]

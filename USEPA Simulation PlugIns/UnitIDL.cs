@@ -4,16 +4,18 @@ using System.Linq;
 using System.Text;
 
 namespace USEPA_Simulation_PlugIns {
-	/// <summary>
-	/// The direction that objects or information connected to the port is expected to flow (e.g. material, energy or information objects).
-	/// </summary>
-	/// <remarks>
-	/// This enumeration provide the flowsheeting tool with information related to the direction of the port, that is, whether the port take in
-	/// material, information, or energy; or outputs a material, information of energy. This can be used to by the flowsheet to
-	/// aid in the selection of the port to which to attach the material, information or energy object.
-	/// </remarks>
-	[Serializable]
-	public enum CapePortDirection{
+    /// <summary>
+    /// The direction that objects or information connected to the port is expected to flow (e.g. material, energy or information objects).
+    /// </summary>
+    /// <remarks>
+    /// This enumeration provide the flowsheeting tool with information related to the direction of the port, that is, whether the port take in
+    /// material, information, or energy; or outputs a material, information of energy. This can be used to by the flowsheet to
+    /// aid in the selection of the port to which to attach the material, information or energy object.
+    /// </remarks>
+    [System.Runtime.InteropServices.ComVisible(false)]
+    [System.Runtime.InteropServices.TypeIdentifier()]
+    [System.Runtime.InteropServices.GuidAttribute("678C0B05-7D66-11D2-A67D-00105A42887F")]
+    public enum CapePortDirection{
 		/// <summary>
 		/// Signifies an inlet port to the unit operation.
 		/// </summary>
@@ -28,17 +30,19 @@ namespace USEPA_Simulation_PlugIns {
 		CAPE_INLET_OUTLET=2
 	};
 
-	/// <summary>
-	/// The type of objects or information that can flow into the unit operation from 
-	/// the connected object.
-	/// </summary>
-	/// <remarks>
-	/// This enumeration provide the flowsheeting tool with information related to the type of the port, that is, whether the unit operation uses the object attaches to the port as a
-	/// material, information, or energy. This can be used to by the flowsheet to
-	/// aid in the selection of the port to which to attach the material, information or energy object.
-	/// </remarks>
-	[Serializable]
-	public enum CapePortType{
+    /// <summary>
+    /// The type of objects or information that can flow into the unit operation from 
+    /// the connected object.
+    /// </summary>
+    /// <remarks>
+    /// This enumeration provide the flowsheeting tool with information related to the type of the port, that is, whether the unit operation uses the object attaches to the port as a
+    /// material, information, or energy. This can be used to by the flowsheet to
+    /// aid in the selection of the port to which to attach the material, information or energy object.
+    /// </remarks>
+    [System.Runtime.InteropServices.ComVisible(false)]
+    [System.Runtime.InteropServices.TypeIdentifier()]
+    [System.Runtime.InteropServices.GuidAttribute("678C0B06-7D66-11D2-A67D-00105A42887F")]
+    public enum CapePortType{
 		/// <summary>
 		/// Indicates that a material flow is expected through this port to the unit operation.
 		/// </summary>
@@ -328,7 +332,7 @@ namespace USEPA_Simulation_PlugIns {
     /// <remarks>
     /// Provides information about the validation of the unit operation.
     /// </remarks>
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("50A759AF-5E38-4399-9050-93F823E5A6E6")]
     [System.ComponentModel.DescriptionAttribute("IUnitOperationValidatedEventArgs Interface")]
     interface IUnitOperationValidatedEventArgs
@@ -372,7 +376,7 @@ namespace USEPA_Simulation_PlugIns {
     /// Provides information about the validation of the unit operation.
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("9147E78B-29D6-4D91-956E-75D0FB90CEA7")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class UnitOperationValidatedEventArgs : System.EventArgs,
@@ -459,7 +463,7 @@ namespace USEPA_Simulation_PlugIns {
     /// <remarks>
     /// Provides information about the start of the calculation of the unit operation.
     /// </remarks>
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("DDCA3348-074C-4860-AD00-58386327D9AC")]
     [System.ComponentModel.DescriptionAttribute("IUnitOperationCalculateEventArgs Interface")]
     interface IUnitOperationCalculateEventArgs
@@ -487,7 +491,7 @@ namespace USEPA_Simulation_PlugIns {
     /// Provides information about the start of the calculation of the unit operation.
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("7831C38B-A1C6-40C5-B9FC-DAC43426AAD4")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class UnitOperationCalculateEventArgs : System.EventArgs,
@@ -544,7 +548,7 @@ namespace USEPA_Simulation_PlugIns {
     /// <remarks>
     /// Provides information about the start of the calculation of the unit operation.
     /// </remarks>
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("3E827FD8-5BDB-41E4-81D9-AC438BC9B957")]
     [System.ComponentModel.DescriptionAttribute("IUnitOperationBeginCalculationEventArgs Interface")]
     interface IUnitOperationBeginCalculationEventArgs
@@ -572,7 +576,7 @@ namespace USEPA_Simulation_PlugIns {
     /// Provides information about the start of the calculation of the unit operation.
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("763691E8-D792-4B97-A12A-D4AD7F66B5E4")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class UnitOperationBeginCalculationEventArgs : System.EventArgs,
@@ -629,7 +633,7 @@ namespace USEPA_Simulation_PlugIns {
     /// <remarks>
     /// Provides information about the completion of the unit operation calculation process.
     /// </remarks>
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("951D755F-8831-4691-9B54-CC9935A5B7CC")]
     [System.ComponentModel.DescriptionAttribute("IUnitOperationEndCalculationEventArgs Interface")]
     interface IUnitOperationEndCalculationEventArgs
@@ -658,7 +662,7 @@ namespace USEPA_Simulation_PlugIns {
     /// Provides information about the validation of the unit operation.
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("172F4D6E-65D1-4D9E-A275-7880FA3A40A5")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class UnitOperationEndCalculationEventArgs : System.EventArgs,
@@ -1286,7 +1290,7 @@ namespace USEPA_Simulation_PlugIns {
     /// <remarks>
     /// An object was connected to the port.
     /// </remarks>
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("DC735166-8008-4B39-BE1C-6E94A723AD65")]
     [System.ComponentModel.DescriptionAttribute("PortConnectedEventArgs Interface")]
     interface IPortConnectedEventArgs
@@ -1307,7 +1311,7 @@ namespace USEPA_Simulation_PlugIns {
     /// An object was connected to the port.
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("962B9FDE-842E-43F8-9280-41C5BF80DDEC")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class PortConnectedEventArgs : System.EventArgs,
@@ -1349,7 +1353,7 @@ namespace USEPA_Simulation_PlugIns {
     /// <remarks>
     /// The port was disconnected.
     /// </remarks>
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("5EFDEE16-7858-4119-B8BB-7394FFBCC02D")]
     [System.ComponentModel.DescriptionAttribute("PortDisconnectedEventArgs Interface")]
     interface IPortDisconnectedEventArgs
@@ -1368,7 +1372,7 @@ namespace USEPA_Simulation_PlugIns {
     /// The port was disconnected.
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("693F33AA-EE4A-4CDF-9BA1-8889086BC8AB")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class PortDisconnectedEventArgs : System.EventArgs,

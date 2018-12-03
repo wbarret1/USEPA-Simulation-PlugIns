@@ -200,10 +200,10 @@ namespace USEPA_Simulation_PlugIns
                         System.Runtime.InteropServices.Marshal.FinalReleaseComObject(obj);
                     }
                 }
-                //if (System.Runtime.InteropServices.Marshal.IsComObject(p_Monitoring))
-                //{
-                //    System.Runtime.InteropServices.Marshal.ReleaseComObject(p_Monitoring);
-                //}
+                if (System.Runtime.InteropServices.Marshal.IsComObject(p_Monitoring))
+                {
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(p_Monitoring);
+                }
             }
             disposed = true;
             // Call base class implementation.

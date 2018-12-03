@@ -12,7 +12,8 @@ namespace USEPA_Simulation_PlugIns
     /// <summary>
     /// The unit selector class provides a graphical user interface (GUI) for the <see cref="UnitOperationWrapper"/> class.
     /// </summary>
-    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    //[System.Runtime.InteropServices.ComVisible(false)]
+    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public partial class UnitSelector : Form
     {
         Type m_Unit;

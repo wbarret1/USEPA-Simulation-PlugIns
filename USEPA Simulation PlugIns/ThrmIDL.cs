@@ -4819,7 +4819,7 @@ namespace USEPA_Simulation_PlugIns
         void CalcAndGetLnPhi(String phaseLabel, double temperature,
             double pressure,
             double[] moleNumbers,
-            CapeFugacityFlag fFlags,
+            CapeCalculationCode fFlags,
             ref double[] lnPhi,
             ref double[] lnPhiDT,
             ref double[] lnPhiDP,
@@ -6291,66 +6291,68 @@ namespace USEPA_Simulation_PlugIns
         ICapeThermoPropertyRoutine GetPropertyPackage(String PackageName);
     };
 
-    /// <summary>
-    /// A flag that indicates the desired calculations for the <see cref = "ICapeThermoPropertyRoutine.CalcAndGetLnPhi">ICapeThermoPropertyRoutine.CalcAndGetLnPhi</see> method.
-    /// </summary>
-    /// <remarks>
-    /// <para>The quantities actually calculated and returned by this method are 
-    /// controlled by an integer code fFlags. The code is formed by summing contributions 
-    /// for the property and each derivative required using the enumerated constants 
-    /// CapeCalculationCode (defined in the Thermo version 1.1 IDL) shown in the following 
-    /// table. For example, to calculate log fugacity coefficients and their T-derivatives 
-    /// the fFlags argument would be set to CAPE_LOG_FUGACITY_COEFFICIENTS | CAPE_T_DERIVATIVE (bitwise "or' operator).</para>
-    /// <table border="1">
-    /// <tr>
-    /// <th>Calculation Type</th>
-    /// <th>Enumeration Value</th>
-    /// <th>Numerical Value</th>
-    /// </tr>
-    /// <tr>
-    /// <td>no calculation</td>
-    /// <td>CAPE_NO_CALCULATION</td>
-    /// <td>0</td>
-    /// </tr>
-    /// <tr>
-    /// <td>log fugacity coefficients</td>
-    /// <td>CAPE_LOG_FUGACITY_COEFFICIENTS</td>
-    /// <td>1</td>
-    /// </tr>
-    /// <tr>
-    /// <td>T-derivative</td>
-    /// <td>CAPE_T_DERIVATIVE</td>
-    /// <td>2</td>
-    /// </tr>
-    /// <tr>
-    /// <td>P-derivative</td>
-    /// <td>CAPE_P_DERIVATIVE</td>
-    /// <td>4</td>
-    /// </tr>
-    /// <tr>
-    /// <td>mole number derivatives</td>
-    /// <td>CAPE_MOLE_NUMBERS_DERIVATIVES</td>
-    /// <td>8</td>
-    /// </tr>
-    /// </table>	
-    /// <para>If CalcAndGetLnPhi is called with fFlags set to CAPE_NO_CALCULATION no 
-    /// property values are returned. </para>
-    /// </remarks>
-    [Serializable]
-    public enum CapeCalculationCode
-    {
-        /// <summary>Do not calulate any proeprty values.</summary>
-        CAPE_NO_CALCULATION = 0,
-        /// <summary>Calculate the value of the log of the fugacity coefficient.</summary>
-        CAPE_LOG_FUGACITY_COEFFICIENTS = 1,
-        /// <summary>Calculate the value of the temperature derivates.</summary>
-        CAPE_T_DERIVATIVE = 2,
-        /// <summary>Calculate the value of the pressure derivates.</summary>
-        CAPE_P_DERIVATIVE = 4,
-        /// <summary>Calculate the value of the mole number derivates.</summary>
-        CAPE_MOLE_NUMBERS_DERIVATIVES = 8
-    };
-    //typedef CapeCalculationCode eCapeCalculationCode;
+    ///// <summary>
+    ///// A flag that indicates the desired calculations for the <see cref = "ICapeThermoPropertyRoutine.CalcAndGetLnPhi">ICapeThermoPropertyRoutine.CalcAndGetLnPhi</see> method.
+    ///// </summary>
+    ///// <remarks>
+    ///// <para>The quantities actually calculated and returned by this method are 
+    ///// controlled by an integer code fFlags. The code is formed by summing contributions 
+    ///// for the property and each derivative required using the enumerated constants 
+    ///// CapeCalculationCode (defined in the Thermo version 1.1 IDL) shown in the following 
+    ///// table. For example, to calculate log fugacity coefficients and their T-derivatives 
+    ///// the fFlags argument would be set to CAPE_LOG_FUGACITY_COEFFICIENTS | CAPE_T_DERIVATIVE (bitwise "or' operator).</para>
+    ///// <table border="1">
+    ///// <tr>
+    ///// <th>Calculation Type</th>
+    ///// <th>Enumeration Value</th>
+    ///// <th>Numerical Value</th>
+    ///// </tr>
+    ///// <tr>
+    ///// <td>no calculation</td>
+    ///// <td>CAPE_NO_CALCULATION</td>
+    ///// <td>0</td>
+    ///// </tr>
+    ///// <tr>
+    ///// <td>log fugacity coefficients</td>
+    ///// <td>CAPE_LOG_FUGACITY_COEFFICIENTS</td>
+    ///// <td>1</td>
+    ///// </tr>
+    ///// <tr>
+    ///// <td>T-derivative</td>
+    ///// <td>CAPE_T_DERIVATIVE</td>
+    ///// <td>2</td>
+    ///// </tr>
+    ///// <tr>
+    ///// <td>P-derivative</td>
+    ///// <td>CAPE_P_DERIVATIVE</td>
+    ///// <td>4</td>
+    ///// </tr>
+    ///// <tr>
+    ///// <td>mole number derivatives</td>
+    ///// <td>CAPE_MOLE_NUMBERS_DERIVATIVES</td>
+    ///// <td>8</td>
+    ///// </tr>
+    ///// </table>	
+    ///// <para>If CalcAndGetLnPhi is called with fFlags set to CAPE_NO_CALCULATION no 
+    ///// property values are returned. </para>
+    ///// </remarks>
+    //[Serializable]
+    //[System.Runtime.InteropServices.TypeIdentifier()]
+    //[System.Runtime.InteropServices.GuidAttribute("F72EE2D8-5868-45FA-97D6-D4E1E2D08306")]
+    //public enum CapeCalculationCode
+    //{
+    //    /// <summary>Do not calulate any proeprty values.</summary>
+    //    CAPE_NO_CALCULATION = 0,
+    //    /// <summary>Calculate the value of the log of the fugacity coefficient.</summary>
+    //    CAPE_LOG_FUGACITY_COEFFICIENTS = 1,
+    //    /// <summary>Calculate the value of the temperature derivates.</summary>
+    //    CAPE_T_DERIVATIVE = 2,
+    //    /// <summary>Calculate the value of the pressure derivates.</summary>
+    //    CAPE_P_DERIVATIVE = 4,
+    //    /// <summary>Calculate the value of the mole number derivates.</summary>
+    //    CAPE_MOLE_NUMBERS_DERIVATIVES = 8
+    //};
+    ////typedef CapeCalculationCode eCapeCalculationCode;
 
     /// <summary>
     /// Status of the phases present in the material object.
@@ -6364,7 +6366,8 @@ namespace USEPA_Simulation_PlugIns
     /// Equilibrium Calculation. The stored values are available but there is no guarantee 
     /// that they will be used.
     /// </remarks>
-    [Serializable]
+    [System.Runtime.InteropServices.ComVisible(false)]
+    [System.Runtime.InteropServices.GuidAttribute("BB8B3CAC-C503-4274-8208-7FB82CEBA4A9")]
     public enum CapePhaseStatus
     {
         /// <summary>

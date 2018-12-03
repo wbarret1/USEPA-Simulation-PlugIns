@@ -19,7 +19,7 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     //[System.Runtime.InteropServices.ComSourceInterfaces(typeof(IRealParameterSpecEvents))]
-    //[System.Runtime.InteropServices.ComVisible(true)]
+    [System.Runtime.InteropServices.ComVisible(false)]
     [System.Runtime.InteropServices.Guid("277E2E39-70E7-4FBA-89C9-2A19B9D5E576")]//ICapeThermoMaterialObject_IID)
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     class ArrayParameterWrapper : CapeParameter,

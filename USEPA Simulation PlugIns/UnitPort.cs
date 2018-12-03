@@ -42,7 +42,7 @@ namespace USEPA_Simulation_PlugIns
     /// <remarks>
     /// </remarks>
     [System.Runtime.InteropServices.InterfaceType(System.Runtime.InteropServices.ComInterfaceType.InterfaceIsIDispatch)]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("3530B780-5E59-42B1-801B-3C18F2AD08EE")]
     [System.ComponentModel.DescriptionAttribute("CapeRealParameterEvents Interface")]
     interface IUnitPortEvents
@@ -94,7 +94,7 @@ namespace USEPA_Simulation_PlugIns
     /// </para>
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisible(true)]
+    [System.Runtime.InteropServices.ComVisible(false)]
     [System.Runtime.InteropServices.ComSourceInterfaces(typeof(IUnitPortEvents))]
     [System.Runtime.InteropServices.Guid("51066F52-C0F9-48d7-939E-3A229010E77C")]//ICapeThermoMaterialObject_IID)
     [System.ComponentModel.Description("")]

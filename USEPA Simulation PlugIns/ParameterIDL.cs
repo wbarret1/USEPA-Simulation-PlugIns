@@ -31,7 +31,9 @@ namespace USEPA_Simulation_PlugIns
     ///    array(CAPE_ARRAY)
     /// Reference document: Parameter Common Interface
     /// </remarks>
-    [Serializable]
+    [System.Runtime.InteropServices.ComVisible(false)]
+    [System.Runtime.InteropServices.TypeIdentifier()]
+    [System.Runtime.InteropServices.GuidAttribute("678C0B02-7D66-11D2-A67D-00105A42887F")]
     public enum CapeParamType
     {
         /// <summary>
@@ -71,7 +73,9 @@ namespace USEPA_Simulation_PlugIns
     /// </list>
     /// Reference document: Parameter Common Interface
     /// </remarks>
-    [Serializable]
+    [System.Runtime.InteropServices.ComVisible(false)]
+    [System.Runtime.InteropServices.TypeIdentifier()]
+    [System.Runtime.InteropServices.GuidAttribute("678C0B03-7D66-11D2-A67D-00105A42887F")]
     public enum CapeParamMode
     {
         /// <summary>
@@ -982,7 +986,7 @@ namespace USEPA_Simulation_PlugIns
     /// <remarks>
     /// </remarks>
     [System.Runtime.InteropServices.InterfaceType(System.Runtime.InteropServices.ComInterfaceType.InterfaceIsIDispatch)]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("3C32AD8E-490D-4822-8A8E-073F5EDFF3F5")]
     [System.ComponentModel.DescriptionAttribute("CapeParameterEvents Interface")]
     interface IParameterEvents
@@ -1125,7 +1129,7 @@ namespace USEPA_Simulation_PlugIns
     /// <remarks>
     /// The IParameterValueChangedEventArgs interface specifies the old and new value of the parameter.
     /// </remarks>
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("41E1A3C4-F23C-4B39-BC54-39851A1D09C9")]
     [System.ComponentModel.DescriptionAttribute("CapeIdentificationEvents Interface")]
     interface IParameterValueChangedEventArgs
@@ -1161,7 +1165,7 @@ namespace USEPA_Simulation_PlugIns
     /// The ParameterValueChangedEventArgs event specifies the old and new value of the parameter.
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("C3592B59-92E8-4A24-A2EB-E23C38F88E7F")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class ParameterValueChangedEventArgs : System.EventArgs,
@@ -1233,7 +1237,7 @@ namespace USEPA_Simulation_PlugIns
     /// <remarks>
     /// The IParameterDefaultValueChangedEventArgs interface specifies the old and new default value of the parameter.
     /// </remarks>
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("E5D9CE6A-9B10-4A81-9E06-1B6C6C5257F3")]
     [System.ComponentModel.DescriptionAttribute("CapeIdentificationEvents Interface")]
     interface IParameterDefaultValueChangedEventArgs
@@ -1269,7 +1273,7 @@ namespace USEPA_Simulation_PlugIns
     /// The ParameterDefaultValueChangedEventArgs event specifies the old and new default value of the parameter.
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("355A5BDD-F6B5-4EEE-97C7-F1533DD28889")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class ParameterDefaultValueChangedEventArgs : System.EventArgs,
@@ -1340,7 +1344,7 @@ namespace USEPA_Simulation_PlugIns
     /// <remarks>
     /// The IParameterLowerBoundChangedEventArgs interface specifies the old and new lower bound of the parameter.
     /// </remarks>
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("FBCE7FC9-0F58-492B-88F9-8A23A23F93B1")]
     [System.ComponentModel.DescriptionAttribute("CapeIdentificationEvents Interface")]
     interface IParameterLowerBoundChangedEventArgs
@@ -1376,7 +1380,7 @@ namespace USEPA_Simulation_PlugIns
     /// The ParameterLowerBoundChangedEventArgs event specifies the old and new lower bound of the parameter.
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("A982AD29-10B5-4C86-AF74-3914DD902384")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class ParameterLowerBoundChangedEventArgs : System.EventArgs,
@@ -1444,7 +1448,7 @@ namespace USEPA_Simulation_PlugIns
     /// <summary>
     /// Represents the method that will handle the changing of the upper bound of a parameter.
     /// </summary>
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     delegate void ParameterUpperBoundChangedHandlerCOM(Object sender, object args);
 
     /// <summary>
@@ -1453,7 +1457,7 @@ namespace USEPA_Simulation_PlugIns
     /// <remarks>
     /// The IParameterUpperBoundChangedEventArgs interface specifies the old and new lower bound of the parameter.
     /// </remarks>
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("A2D0FAAB-F30E-48F5-82F1-4877F61950E9")]
     [System.ComponentModel.DescriptionAttribute("CapeIdentificationEvents Interface")]
     interface IParameterUpperBoundChangedEventArgs
@@ -1489,7 +1493,7 @@ namespace USEPA_Simulation_PlugIns
     /// The ParameterUpperBoundChangedEventArgs event specifies the old and new lower bound of the parameter.
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("92BF83FE-0855-4382-A15E-744890B5BBF2")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class ParameterUpperBoundChangedEventArgs : System.EventArgs,
@@ -1562,7 +1566,7 @@ namespace USEPA_Simulation_PlugIns
     /// <remarks>
     /// The IParameterModeChangedEventArgs interface specifies the old and new mode of the parameter.
     /// </remarks>
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("5405E831-4B5F-4A57-A410-8E91BBF9FFD3")]
     [System.ComponentModel.DescriptionAttribute("CapeIdentificationEvents Interface")]
     interface IParameterModeChangedEventArgs
@@ -1598,7 +1602,7 @@ namespace USEPA_Simulation_PlugIns
     /// The ParameterModeChangedEventArgs event specifies the old and new mode of the parameter.
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("3C953F15-A1F3-47A9-829A-9F7590CEB5E9")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class ParameterModeChangedEventArgs : System.EventArgs,
@@ -1671,7 +1675,7 @@ namespace USEPA_Simulation_PlugIns
     /// <remarks>
     /// Provides information about the validation of the parameter.
     /// </remarks>
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("EFD819A4-E4EC-462E-90E6-5D994CA44F8E")]
     [System.ComponentModel.DescriptionAttribute("ParameterValidatedEvent Interface")]
     interface IParameterValidatedEventArgs
@@ -1720,7 +1724,7 @@ namespace USEPA_Simulation_PlugIns
     /// Provides information about the validation of the parameter.
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("5727414A-838D-49F8-AFEF-1CC8C578D756")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class ParameterValidatedEventArgs : System.EventArgs,
@@ -1810,7 +1814,7 @@ namespace USEPA_Simulation_PlugIns
     /// <remarks>
     /// The parameter was reset.
     /// </remarks>
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("12067518-B797-4895-9B26-EA71C60A8803")]
     [System.ComponentModel.DescriptionAttribute("ParameterResetEventArgs Interface")]
     interface IParameterResetEventArgs
@@ -1830,7 +1834,7 @@ namespace USEPA_Simulation_PlugIns
     /// The parameter was reset.
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("01BF391B-415E-4F5E-905D-395A707DC125")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class ParameterResetEventArgs : System.EventArgs,
@@ -1874,7 +1878,7 @@ namespace USEPA_Simulation_PlugIns
     /// <remarks>
     /// The parameter was reset.
     /// </remarks>
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("78E06E7B-00AB-4295-9915-546DC1CD64A6")]
     [System.ComponentModel.DescriptionAttribute("ParameterOptionListChangedEventArgs Interface")]
     interface IParameterOptionListChangedEventArgs
@@ -1917,7 +1921,7 @@ namespace USEPA_Simulation_PlugIns
     /// The parameter option list was changed.
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("2AEC279F-EBEC-4806-AA00-CC215432DB82")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class ParameterOptionListChangedEventArgs : System.EventArgs,
@@ -1955,7 +1959,7 @@ namespace USEPA_Simulation_PlugIns
     /// <remarks>
     /// The restiction to the options list of a parameter was changed.
     /// </remarks>
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("7F357261-095A-4FD4-99C1-ACDAEDA36141")]
     [System.ComponentModel.DescriptionAttribute("ParameterOptionListChangedEventArgs Interface")]
     interface IParameterRestrictedToListChangedEventArgs
@@ -1980,7 +1984,7 @@ namespace USEPA_Simulation_PlugIns
     /// The parameter restiction to the option list was changed.
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("82E0E6C2-3103-4B5A-A5BC-EBAB971B069A")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class ParameterRestrictedToListChangedEventArgs : System.EventArgs,
@@ -2063,6 +2067,7 @@ namespace USEPA_Simulation_PlugIns
     /// Represents the method that will handle the changing of the Equilibrium Reaction Chemistry of a PMC.
     /// </summary>
     [System.Runtime.InteropServices.ComVisibleAttribute(false)]
+    [System.Runtime.InteropServices.Guid("DF996DBD-5E23-4A13-AC68-0522A0944AD1")]
     public delegate void EquilibriumReactionsChangedHandler(Object sender, System.EventArgs args);
 
     /// <summary>

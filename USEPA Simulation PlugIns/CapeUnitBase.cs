@@ -36,7 +36,7 @@ namespace USEPA_Simulation_PlugIns
     [Serializable]
     //[System.Runtime.InteropServices.ComVisible(true)]
     [System.Runtime.InteropServices.ComSourceInterfaces(typeof(IUnitOperationValidatedEventArgs))]
-    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public abstract class CapeUnitBase : CapeObjectBase,
         ICapeUnit,
         ICapeUnitCOM,

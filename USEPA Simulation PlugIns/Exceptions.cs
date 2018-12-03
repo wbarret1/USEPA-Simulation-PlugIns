@@ -31,7 +31,7 @@ namespace USEPA_Simulation_PlugIns
     /// being caught as the derived exception type. </para>
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisible(true)]
+    [System.Runtime.InteropServices.ComVisible(false)]
     [System.Runtime.InteropServices.Guid("28686562-77AD-448f-8A41-8CF9C3264A3E")]
     [System.ComponentModel.Description("")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
@@ -414,7 +414,7 @@ namespace USEPA_Simulation_PlugIns
     [System.Runtime.InteropServices.ComVisible(false)]
     [System.Runtime.InteropServices.Guid("B550B2CA-6714-4e7f-813E-C93248142410")]
     [System.ComponentModel.Description("")]
-    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class CapeUnknownException : CapeUserException,
         USEPA_Simulation_PlugIns.ECapeUnknown
     {
@@ -491,10 +491,10 @@ namespace USEPA_Simulation_PlugIns
     /// that occurred was not one that was suitable for any of the other errors supported by the object. </para>
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisible(true)]
+    [System.Runtime.InteropServices.ComVisible(false)]
     [System.Runtime.InteropServices.Guid("16049506-E086-4baf-9905-9ED13D50D0E3")]
     [System.ComponentModel.Description("")]
-    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class CapeUnexpectedException : CapeUserException
     {
 
@@ -573,8 +573,8 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     [System.Runtime.InteropServices.Guid("53551E7C-ECB2-4894-B71A-CCD1E7D40995")]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
-    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
+    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class CapeDataException : CapeUserException,
         USEPA_Simulation_PlugIns.ECapeData
     {
@@ -648,8 +648,8 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     [System.Runtime.InteropServices.Guid("667D34E9-7EF7-4ca8-8D17-C7577F2C5B62")]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
-    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
+    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class CapeBadCOParameter : CapeDataException,
         USEPA_Simulation_PlugIns.ECapeBadCOParameter
     {
@@ -770,8 +770,8 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     [System.Runtime.InteropServices.Guid("D168E99F-C1EF-454c-8574-A8E26B62ADB1")]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
-    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
+    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class CapeBadArgumentException : CapeDataException,
         USEPA_Simulation_PlugIns.ECapeBadArgument
         //USEPA_Simulation_PlugIns.ECapeBadArgument093
@@ -893,8 +893,8 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     [System.Runtime.InteropServices.Guid("62B1EE2F-E488-4679-AFA3-D490694D6B33")]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
-    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
+    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public abstract class CapeBoundariesException : CapeUserException,
         USEPA_Simulation_PlugIns.ECapeBoundaries
     {
@@ -1071,8 +1071,8 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     [System.Runtime.InteropServices.Guid("4438458A-1659-48c2-9138-03AD8B4C38D8")]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
-    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
+    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class CapeOutOfBoundsException : CapeBoundariesException,
         USEPA_Simulation_PlugIns.ECapeOutOfBounds,
         USEPA_Simulation_PlugIns.ECapeBadArgument,
@@ -1230,8 +1230,8 @@ namespace USEPA_Simulation_PlugIns
     [
         Serializable,
         System.Runtime.InteropServices.Guid("9D416BF5-B9E3-429a-B13A-222EE85A92A7"),
-        System.Runtime.InteropServices.ComVisibleAttribute(true),
-        System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)
+        System.Runtime.InteropServices.ComVisibleAttribute(false)
+        //System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)
     ]
     public class CapeComputationException : CapeUserException,
         USEPA_Simulation_PlugIns.ECapeComputation
@@ -1306,8 +1306,8 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     [System.Runtime.InteropServices.Guid("E407595C-6D1C-4b8c-A29D-DB0BE73EFDDA")]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
-    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
+    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class CapeFailedInitialisationException : CapeComputationException,
         USEPA_Simulation_PlugIns.ECapeFailedInitialisation
     {
@@ -1385,8 +1385,8 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     [System.Runtime.InteropServices.Guid("7828A87E-582D-4947-9E8F-4F56725B6D75")]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
-    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
+    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class CapeImplementationException : CapeUserException,
         USEPA_Simulation_PlugIns.ECapeImplementation
     {
@@ -1463,8 +1463,8 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     [System.Runtime.InteropServices.Guid("B30127DA-8E69-4d15-BAB0-89132126BAC9")]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
-    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
+    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class CapeInvalidArgumentException : CapeBadArgumentException,
         USEPA_Simulation_PlugIns.ECapeInvalidArgument
     {
@@ -1542,8 +1542,8 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     [System.Runtime.InteropServices.Guid("C0B943FE-FB8F-46b6-A622-54D30027D18B")]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
-    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
+    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class CapeInvalidOperationException : CapeComputationException,
         USEPA_Simulation_PlugIns.ECapeInvalidOperation
     {
@@ -1616,8 +1616,8 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     [System.Runtime.InteropServices.Guid("07EAD8B4-4130-4ca6-94C1-E8EC4E9B23CB")]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
-    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
+    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class CapeBadInvOrderException : CapeComputationException,
         USEPA_Simulation_PlugIns.ECapeBadInvOrder
     {
@@ -1731,8 +1731,8 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     [System.Runtime.InteropServices.Guid("CF4C55E9-6B0A-4248-9A33-B8134EA393F6")]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
-    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
+    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class CapeLicenceErrorException : CapeDataException,
         USEPA_Simulation_PlugIns.ECapeLicenceError
     {
@@ -1814,8 +1814,8 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     [System.Runtime.InteropServices.Guid("5E6B74A2-D603-4e90-A92F-608E3F1CD39D")]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
-    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
+    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class CapeLimitedImplException : CapeImplementationException,
         USEPA_Simulation_PlugIns.ECapeLimitedImpl
     {
@@ -1891,8 +1891,8 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     [System.Runtime.InteropServices.Guid("1D2488A6-C428-4e38-AFA6-04F2107172DA")]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
-    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
+    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class CapeNoImplException : CapeImplementationException,
         USEPA_Simulation_PlugIns.ECapeNoImpl
     {
@@ -1966,8 +1966,8 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     [System.Runtime.InteropServices.Guid("42B785A7-2EDD-4808-AC43-9E6E96373616")]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
-    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
+    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class CapeOutOfResourcesException : CapeUserException,
         USEPA_Simulation_PlugIns.ECapeOutOfResources,
         USEPA_Simulation_PlugIns.ECapeComputation
@@ -2054,8 +2054,8 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     [System.Runtime.InteropServices.Guid("1056A260-A996-4a1e-8BAE-9476D643282B")]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
-    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
+    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class CapeNoMemoryException : CapeUserException,
         USEPA_Simulation_PlugIns.ECapeNoMemory
     {
@@ -2130,8 +2130,8 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     [System.Runtime.InteropServices.Guid("3237C6F8-3D46-47ee-B25F-52485A5253D8")]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
-    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
+    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class CapePersistenceException : CapeUserException,
          USEPA_Simulation_PlugIns.ECapePersistence
     {
@@ -2206,8 +2206,8 @@ namespace USEPA_Simulation_PlugIns
     [
         Serializable,
         System.Runtime.InteropServices.Guid("271B9E29-637E-4eb0-9588-8A53203A3959"),
-        System.Runtime.InteropServices.ComVisibleAttribute(true),
-        System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)
+        System.Runtime.InteropServices.ComVisibleAttribute(false)
+        //System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)
     ]
     public class CapePersistenceNotFoundException : CapePersistenceException,
         USEPA_Simulation_PlugIns.ECapePersistenceNotFound
@@ -2319,8 +2319,8 @@ namespace USEPA_Simulation_PlugIns
     [
         Serializable,
         System.Runtime.InteropServices.Guid("A119DE0B-C11E-4a14-BA5E-9A2D20B15578"),
-        System.Runtime.InteropServices.ComVisibleAttribute(true),
-        System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)
+        System.Runtime.InteropServices.ComVisibleAttribute(false)
+        //System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)
     ]
     public class CapePersistenceOverflowException : CapeUserException,
         USEPA_Simulation_PlugIns.ECapePersistenceOverflow,
@@ -2402,8 +2402,8 @@ namespace USEPA_Simulation_PlugIns
     [
         Serializable,
         System.Runtime.InteropServices.Guid("85CB2D40-48F6-4c33-BF0C-79CB00684440"),
-        System.Runtime.InteropServices.ComVisibleAttribute(true),
-        System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)
+        System.Runtime.InteropServices.ComVisibleAttribute(false)
+        //System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)
     ]
     public class CapePersistenceSystemErrorException : CapePersistenceException,
         USEPA_Simulation_PlugIns.ECapePersistenceSystemError
@@ -2478,8 +2478,8 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     [System.Runtime.InteropServices.Guid("45843244-ECC9-495d-ADC3-BF9980A083EB")]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
-    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
+    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class CapeIllegalAccessException : CapePersistenceException,
         USEPA_Simulation_PlugIns.ECapeIllegalAccess
     {
@@ -2554,8 +2554,8 @@ namespace USEPA_Simulation_PlugIns
     [
         Serializable,
         System.Runtime.InteropServices.Guid("F617AFEA-0EEE-4395-8C82-288BF8F2A136"),
-        System.Runtime.InteropServices.ComVisibleAttribute(true),
-        System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)
+        System.Runtime.InteropServices.ComVisibleAttribute(false)
+        //System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)
     ]
     public class CapeSolvingErrorException : CapeComputationException,
         USEPA_Simulation_PlugIns.ECapeSolvingError
@@ -2631,8 +2631,8 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     [Serializable]
     [System.Runtime.InteropServices.Guid("3044EA08-F054-4315-B67B-4E3CD2CF0B1E")]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
-    [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
+    //[System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class CapeHessianInfoNotAvailableException : CapeSolvingErrorException,
         USEPA_Simulation_PlugIns.ECapeHessianInfoNotAvailable
     {
@@ -2707,8 +2707,8 @@ namespace USEPA_Simulation_PlugIns
     [
         Serializable,
         System.Runtime.InteropServices.Guid("0D5CA7D8-6574-4c7b-9B5F-320AA8375A3C"),
-        System.Runtime.InteropServices.ComVisibleAttribute(true),
-        System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)
+        System.Runtime.InteropServices.ComVisibleAttribute(false)
+        //System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)
     ]
     public class CapeTimeOutException : CapeUserException,
         USEPA_Simulation_PlugIns.ECapeTimeOut
@@ -2854,8 +2854,8 @@ namespace USEPA_Simulation_PlugIns
     [
         Serializable,
         System.Runtime.InteropServices.Guid("5BA36B8F-6187-4e5e-B263-0924365C9A81"),
-        System.Runtime.InteropServices.ComVisibleAttribute(true),
-        System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)
+        System.Runtime.InteropServices.ComVisibleAttribute(false)
+        //System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)
     ]
     public class CapeThrmPropertyNotAvailableException : CapeUserException,
         USEPA_Simulation_PlugIns.ECapeThrmPropertyNotAvailable

@@ -45,7 +45,10 @@ namespace USEPA_Simulation_PlugIns {
 	/// const int LAST_E_INTERFACE_HR = (int)0x8004FFFF;</para>
 	/// </remarks>
 	[Serializable]
-	public enum CapeErrorInterfaceHR: int {
+    [System.Runtime.InteropServices.ComVisible(false)]
+    [System.Runtime.InteropServices.TypeIdentifier()]
+    [System.Runtime.InteropServices.GuidAttribute("678C0B01-7D66-11D2-A67D-00105A42887F")]
+    public enum CapeErrorInterfaceHR: int {
 		/// <summary>
 		/// 0x80040501
 		/// </summary>

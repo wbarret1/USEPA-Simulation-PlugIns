@@ -161,11 +161,9 @@ namespace USEPA_Simulation_PlugIns
     /// <para>(iii) valid(CAPE_VALID): the last time that the PMC's Validate() method 
     /// was called it returned true.</para>
     /// </remarks>
-    //[
-    //    Serializable,
-    //    System.Runtime.InteropServices.ComVisibleAttribute(true),
-    //    System.Runtime.InteropServices.GuidAttribute(COGuids.CapeValidationStatus_IID)
-    //]
+    [System.Runtime.InteropServices.ComVisible(false)]
+    [System.Runtime.InteropServices.TypeIdentifier()]
+    [System.Runtime.InteropServices.GuidAttribute("678C0B04-7D66-11D2-A67D-00105A42887F")]
     public enum CapeValidationStatus
     {
         /// <summary>
@@ -244,7 +242,7 @@ namespace USEPA_Simulation_PlugIns
     /// A CapeIdentification.NameChangedEventArgs event specifies the old and new name of the PMC.
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("D78014E7-FB1D-43ab-B807-B219FAB97E8B")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class ComponentNameChangedEventArgs : System.EventArgs//,
@@ -297,7 +295,7 @@ namespace USEPA_Simulation_PlugIns
     /// A CapeIdentification.DescriptionChangedEventArgs event specifies the old and new description of the PMC.
     /// </remarks>
     [Serializable]
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
     [System.Runtime.InteropServices.GuidAttribute("0C51C4F1-20E8-413d-93E1-4704B888354A")]
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.None)]
     public class ComponentDescriptionChangedEventArgs : System.EventArgs,
@@ -549,7 +547,8 @@ namespace USEPA_Simulation_PlugIns
     /// </remarks>
     /// <param name = "sender">The PMC that is the source .</param>
     /// <param name = "args">A <see cref = "ComponentNameChangedEventArgs">NameChangedEventArgs</see> that provides information about the name change.</param>
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
+    [System.Runtime.InteropServices.GuidAttribute("131D31FD-1691-445B-9FBB-A0139621AFA8")]
     public delegate void ComponentNameChangedHandler(Object sender, ComponentNameChangedEventArgs args);
 
     /// <summary>
@@ -564,7 +563,8 @@ namespace USEPA_Simulation_PlugIns
     /// <param name = "sender">The PMC that is the source of the event.</param>
     /// <param name = "args">A <see cref = "ComponentDescriptionChangedEventArgs">DescriptionChangedEventArgs</see> that 
     /// provides information about the description change.</param>
-    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    [System.Runtime.InteropServices.ComVisibleAttribute(false)]
+    [System.Runtime.InteropServices.GuidAttribute("82C430F9-4E05-4B4F-91D8-ADA4DBCC7D9A")]
     public delegate void ComponentDescriptionChangedHandler(Object sender, ComponentDescriptionChangedEventArgs args);
 
     /// <summary>

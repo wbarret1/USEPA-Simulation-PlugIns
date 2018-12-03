@@ -1766,7 +1766,7 @@ namespace USEPA_Simulation_PlugIns
         void ICapeThermoPropertyRoutine.CalcAndGetLnPhi(String phaseLabel, double temperature,
             double pressure,
             double[] moleNumbers,
-            CapeFugacityFlag fFlags,
+            CapeCalculationCode fFlags,
             ref double[] lnPhi,
             ref double[] lnPhiDT,
             ref double[] lnPhiDP,

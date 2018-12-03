@@ -6,15 +6,16 @@ using System.Text;
 namespace USEPA_Simulation_PlugIns
 {
 
-	/// <summary>
-	/// Stream type enumeration used by COFE.
-	/// </summary>
-	/// <remarks>
-	/// This enumeration provides the Stream type enumeration used by COFE.
-	/// </remarks>
+    /// <summary>
+    /// Stream type enumeration used by COFE.
+    /// </summary>
+    /// <remarks>
+    /// This enumeration provides the Stream type enumeration used by COFE.
+    /// </remarks>
     //[System.Runtime.InteropServices.ComImport()]
     //[System.Runtime.InteropServices.ComVisibleAttribute(true)]
-    //[System.Runtime.InteropServices.GuidAttribute("D1B15843-C0F5-4CB7-B462-E1B80456808E")]
+    [System.Runtime.InteropServices.ComVisible(false)]
+    [System.Runtime.InteropServices.GuidAttribute("D1B15843-C0F5-4CB7-B462-E1B80456808E")]
     public enum COFEStreamType
     {
         /// <summary>
