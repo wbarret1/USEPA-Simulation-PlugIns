@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <!-- See https://stackoverflow.com/questions/500703/how-to-get-wix-to-update-a-previously-installed-version-of-a-program -->
+  <!-- GUID created on Feb 28, 2018 for USEPA Simulation Plug-ins. Please change if copies and pasted into a new installer. -->
+  <?define UpgradeCode="5ED66FE4-933F-4472-8D17-E60514E8F349"?>
+  <Product Id="*" 
+           Name="EPASimulationPlugInSetup" 
+           Language="1033" 
+           Version="1.0.0.0" 
+           Manufacturer="US Environmental Protection Agency" 
+           UpgradeCode="$(var.UpgradeCode)"
+           >
+		<Package InstallerVersion="200" 
+             Description="US Environmental Protection Agency CAPE-OPEN Simulation Plug-Ins, including WAR Algorithm."
+             Compressed="yes" 
+             InstallScope="perMachine" 
+             />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <Media Id='1'
+               Cabinet='product.cab'
+               EmbedCab='yes'/>
+
+    <Icon
+      Id="usepaIcons"
+      SourceFile="$(var.SourceDir)\USEPA Simulation PlugIns.dll"
+      />
+
+    <Property Id="ARPPRODUCTICON" Value="usepaIcons" />
+    <Feature Id="ProductFeature" Title="EPASimulationPlugInSetup" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="C_CommonAssemblies" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="EPASimulationPlugInSetup" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+			<Component Id="ProductComponent" Guid = "A6426CF5-A5B8-43A3-9448-44C5D589D1F6"> 
+				<!-- TODO: Insert files, registry keys, and other resources here. -->
+        <RemoveFolder Id="ProgramFilesFolder" On="uninstall"/>
+      </Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>

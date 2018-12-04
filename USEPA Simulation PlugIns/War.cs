@@ -224,7 +224,7 @@ namespace USEPA_Simulation_PlugIns
         /// <exception cref ="ECapeUnknown">The error to be raised when other error(s),  specified for this operation, are not suitable.</exception>
         public WARPlugIn()
         {
-            if (System.Environment.Is64BitProcess) System.Windows.Forms.MessageBox.Show("64-bit Process");
+            //if (System.Environment.Is64BitProcess) System.Windows.Forms.MessageBox.Show("64-bit Process");
             warDataTable = new System.Data.DataTable();
             warDataTable.Columns.Add("Mol Id", typeof(System.String));
             warDataTable.Columns.Add("DIPPR ID", typeof(System.String));

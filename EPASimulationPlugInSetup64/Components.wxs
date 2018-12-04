@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLFOLDER">
+            <Component Id="cmp8E0BA9345D6467C6CE87127468E2DA60" Guid="*">
+                <File Id="fil425B2C707904C74CBB8D3C690296B481" KeyPath="yes" Source="$(var.SourceDir)\DocumentFormat.OpenXml.dll" />
+            </Component>
+            <Component Id="cmp497857C5CC0A98968F92450C07017DCA" Guid="*">
+                <File Id="filAE9C8B356AAE693C0D4EA8955655CE44" KeyPath="yes" Source="$(var.SourceDir)\DocumentFormat.OpenXml.xml" />
+            </Component>
+            <Component Id="cmpC1FFE72A3AE3F0938A522259F21B9158" Guid="*">
+                <Class Id="{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}" Context="InprocServer32" Description="USEPA_Simulation_PlugIns.WARPlugIn" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="USEPA_Simulation_PlugIns.WARPlugIn" Description="USEPA_Simulation_PlugIns.WARPlugIn" />
+                </Class>
+                <File Id="filC8803E8C2512323C33B81349FC3F5360" KeyPath="yes" Source="$(var.SourceDir)\USEPA Simulation PlugIns.dll" />
+                <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\CapeDescription" Name="Name" Value="WAR Plug-In" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\CapeDescription" Name="Description" Value="The Waste Reduction Algorithm Plug-in uses the .NET PIA." Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\CapeDescription" Name="CapeVersion" Value="1.0" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\CapeDescription" Name="ComponentVersion" Value="1.0.6912.28862" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\CapeDescription" Name="VendorURL" Value="http://www.epa.gov/nrmrl/std/sab/war/sim_war.htm" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\CapeDescription" Name="HelpURL" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\CapeDescription" Name="About" Value="Waste Reduction Algorithm Plug-in" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\Implemented Categories\{678c09a1-7d66-11d2-a67d-00105a42887f}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\Implemented Categories\{7BA1AF89-B2E4-493d-BD80-2970BF4CBE99}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\InprocServer32\1.0.6912.28862" Name="Class" Value="USEPA_Simulation_PlugIns.WARPlugIn" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\InprocServer32\1.0.6912.28862" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.6912.28862, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\InprocServer32\1.0.6912.28862" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\InprocServer32\1.0.6912.28862" Name="CodeBase" Value="file:///[#filC8803E8C2512323C33B81349FC3F5360]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\InprocServer32" Name="Class" Value="USEPA_Simulation_PlugIns.WARPlugIn" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\InprocServer32" Name="Assembly" Value="USEPA Simulation PlugIns, Version=1.0.6912.28862, Culture=neutral, PublicKeyToken=null" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{96AEF1DF-8F22-40CC-85D2-563A4E7064EC}\InprocServer32" Name="CodeBase" Value="file:///[#filC8803E8C2512323C33B81349FC3F5360]" Type="string" Action="write" />
+            </Component>
+            <Component Id="cmp0374870B1F170644EF1B337391FB0064" Guid="*">
+                <File Id="fil3B020284B28ED4770B425902D550F5B6" KeyPath="yes" Source="$(var.SourceDir)\USEPA Simulation PlugIns.pdb" />
+            </Component>
+            <Component Id="cmp3AC5B6567E7CF1D707E62547FD987550" Guid="*">
+                <File Id="filC039A711105DC02A456A93F69A855D44" KeyPath="yes" Source="$(var.SourceDir)\USEPA Simulation PlugIns.tlb">
+                    <TypeLib Id="{DF8AB7B3-95E9-4315-89EB-9F2B92912F6E}" Description="Contains the WAR algorithm implementation based upon the CAPE-OPEN Primary Interop Assembly." HelpDirectory="INSTALLFOLDER" Language="0" MajorVersion="1" MinorVersion="0" />
+                </File>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="C_CommonAssemblies">
+            <ComponentRef Id="cmp8E0BA9345D6467C6CE87127468E2DA60" />
+            <ComponentRef Id="cmp497857C5CC0A98968F92450C07017DCA" />
+            <ComponentRef Id="cmpC1FFE72A3AE3F0938A522259F21B9158" />
+            <ComponentRef Id="cmp0374870B1F170644EF1B337391FB0064" />
+            <ComponentRef Id="cmp3AC5B6567E7CF1D707E62547FD987550" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>

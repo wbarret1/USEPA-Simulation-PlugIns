@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" 
+           Name="EPASimulationPlugInSetup64" 
+           Language="1033" Version="1.0.0.0" 
+           Manufacturer="US Environmental Protection Agency" 
+           UpgradeCode="82a326ad-2516-4f3e-bc7a-2bcd0082eaf1">
+    
+		<Package InstallerVersion="200" 
+             Description="US Environmental Protection Agency CAPE-OPEN Simulation Plug-Ins, including WAR Algorithm."
+             Compressed="yes" 
+             InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <Media Id='1'
+               Cabinet='product.cab'
+               EmbedCab='yes'/>
+
+    <Icon
+      Id="usepaIcons"
+      SourceFile="$(var.SourceDir)\USEPA Simulation PlugIns.dll"
+      />
+    <Property Id="ARPPRODUCTICON" Value="usepaIcons" />
+
+    <Feature Id="ProductFeature" Title="EPASimulationPlugInSetup64" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="C_CommonAssemblies" />
+    </Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFiles64Folder">
+				<Directory Id="INSTALLFOLDER" Name="EPASimulationPlugInSetup64" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+      <Component Id="ProductComponent" Guid = "A6426CF5-A5B8-43A3-9448-44C5D589D1F6">
+        <!-- TODO: Insert files, registry keys, and other resources here. -->
+        <RemoveFolder Id="ProgramFilesFolder" On="uninstall"/>
+      </Component>
+    </ComponentGroup>
+	</Fragment>
+</Wix>
